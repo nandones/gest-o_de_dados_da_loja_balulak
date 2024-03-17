@@ -24,10 +24,10 @@ public class Banco {
 
     public Banco() {
         this.porta = "3306";
-        this.banco = "Banco_Notas_Loja";
+        this.banco = "mysql";
         this.usuario = "root";
-        this.senha = "";
-        this.nomeBanco = "mysql";
+        this.senha = "rooteiro";
+        this.nomeBanco = "banco_notas_loja";
     }
     
     public Connection getConexao(){
@@ -35,9 +35,11 @@ public class Banco {
            Connection conexao = null;
            
            try {
-               this.url = "jdbc:"+this.banco+"://localhost"+this.porta+"/"+this.nomeBanco;
+               this.url = "jdbc:"+this.banco+"://localhost:"+this.porta+"/"+this.nomeBanco+"?serverTimezone=America/Sao_Paulo";
+               
                
                conexao = DriverManager.getConnection(this.url, this.usuario, this.senha);
+               System.out.println("conected");
            } catch(SQLException ex){
                System.out.println("problemas na conexão: "+ex.getMessage());
                
