@@ -7,6 +7,7 @@ package com.nandones.notasloja;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -26,7 +27,7 @@ public class Banco {
         this.porta = "3306";
         this.banco = "mysql";
         this.usuario = "root";
-        this.senha = "rooteiro";
+        this.senha = "";
         this.nomeBanco = "banco_notas_loja";
     }
     
@@ -45,6 +46,8 @@ public class Banco {
                
            }return conexao;
     }
+    
+    
 
     
 }
