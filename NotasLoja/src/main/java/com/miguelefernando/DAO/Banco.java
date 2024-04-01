@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nandones.notasloja;
+package com.miguelefernando.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  *
  * @author Miguel
- */
+ */     
 public class Banco {
     
     private String url;
@@ -28,7 +28,7 @@ public class Banco {
         this.banco = "mysql";
         this.usuario = "root";
         this.senha = "rooteiro";
-        this.nomeBanco = "banco_notas_loja";
+        this.nomeBanco = "trab_lpg_1";
     }
     
     public Connection getConexao(){
