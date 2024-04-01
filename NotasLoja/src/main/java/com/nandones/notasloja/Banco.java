@@ -27,7 +27,7 @@ public class Banco {
         this.porta = "3306";
         this.banco = "mysql";
         this.usuario = "root";
-        this.senha = "";
+        this.senha = "rooteiro";
         this.nomeBanco = "banco_notas_loja";
     }
     

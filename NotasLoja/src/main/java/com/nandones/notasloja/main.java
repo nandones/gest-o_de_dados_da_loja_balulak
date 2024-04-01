@@ -8,10 +8,10 @@ package com.nandones.notasloja;
  *
  * @author Fernando
  */
-public class NotasLoja {
+public class main {
 
     public static void main(String[] args) {
-        Banco b = new Banco();
-        b.getConexao();
+        Cliente cliente = new Cliente("teste-willen", "lages", "sc", "000.000.000-00");
+        
     }
 }

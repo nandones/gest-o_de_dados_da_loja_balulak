@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author User
+ * @author Miguel
  */
 public class Cliente {
     
