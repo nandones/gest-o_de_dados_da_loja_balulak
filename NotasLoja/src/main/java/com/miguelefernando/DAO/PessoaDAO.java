@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.miguelefernando.DAO;
 
 import java.sql.Connection;
@@ -10,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
- * @author fernando e miguel
- * @see commom user = 0 & admin = 1<br><br>para puxar os dados do excel, deverá
+ *commom user = 0 e admin = 1<br><br>para puxar os dados do excel, deverá
  * ser feito um construtor com id<br>
  * no próprio MySQL podemos utilizar de:<br>
  * <br>
@@ -23,6 +17,7 @@ import java.sql.SQLException;
  * valor2);<br>
  * -- Reativa a AUTO_INCREMENT para a coluna id<br>
  * SET @@auto_increment_increment=1;<br>
+ * @author fernando e miguel
  * @since 0.0.1 04/24
  * @version 0.0.1
  */
