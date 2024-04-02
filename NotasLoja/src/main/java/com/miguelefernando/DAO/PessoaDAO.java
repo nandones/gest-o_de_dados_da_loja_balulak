@@ -88,7 +88,12 @@ public class PessoaDAO {
         }
         return resultado;
     }
-
+    /**
+     * Salva uma pessoa no bdd como admin = 0
+     * @param void
+     * @return boolean confirmação do insert
+     * @throws SQLException 
+     */
     public boolean salvarClienteSemId() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado = false;

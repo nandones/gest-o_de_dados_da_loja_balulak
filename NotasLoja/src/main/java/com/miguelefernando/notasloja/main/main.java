@@ -1,6 +1,6 @@
 package com.miguelefernando.notasloja.main;
 
-import com.miguelefernando.DAO.Banco;
+import com.miguelefernando.DAO.BancoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;

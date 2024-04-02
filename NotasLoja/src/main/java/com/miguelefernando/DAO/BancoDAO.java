@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
  
-public class Banco {
+public class BancoDAO {
     
     private String url;
     private String porta;
@@ -15,7 +15,7 @@ public class Banco {
     private String senha;
     private String nomeBanco;
 
-    public Banco() {
+    public BancoDAO() {
         this.porta = "3306";
         this.banco = "mysql";
         this.usuario = "root";
