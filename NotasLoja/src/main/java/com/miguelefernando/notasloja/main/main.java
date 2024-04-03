@@ -15,19 +15,12 @@ import java.util.logging.Logger;
 public class main {
 
     public static void main(String[] args) {
-//        PessoaDAO pessoa = new PessoaDAO(15,"willen", "lages", "sc", "000.000.000-00");
-//        try {
-//            System.out.println(pessoa.salvarPessoaSemId());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        ProdutoDAO produto = new ProdutoDAO();
-//        
-//        try {
-//            System.out.println(produto.salvarProdutoSemId());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        PessoaDAO pessoa = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
+        try {
+            System.out.println(pessoa.salvarPessoaSemId());
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         ProdutoDAO p1 = new ProdutoDAO(2000.0, "regata blindada", 'W');
         try {
