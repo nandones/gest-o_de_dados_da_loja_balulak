@@ -4,17 +4,30 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author alunolages
  */
 public class Janela extends javax.swing.JFrame {
 
+    
+    static Painel_menu pl;
+    static Painel_PerfilCliente p2;
+    static Painel_clientes p3;
+    
     /**
      * Creates new form Janela
      */
     public Janela() {
         initComponents();
+        this.setLayout(new BorderLayout());
+        
+        pl = new Painel_menu();
+        
+        this.add(pl, BorderLayout.CENTER);
+        this.pack();
     }
 
     /**
