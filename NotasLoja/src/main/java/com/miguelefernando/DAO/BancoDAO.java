@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
- 
+/**
+ * \kfqweby
+ * @author Fernando
+ */
 public class BancoDAO {
     
     private String url;
@@ -14,12 +17,15 @@ public class BancoDAO {
     private String usuario;
     private String senha;
     private String nomeBanco;
-
+    /**
+     * sdgdguy
+     * @author aristoteles
+     */
     public BancoDAO() {
         this.porta = "3306";
         this.banco = "mysql";
         this.usuario = "root";
-        this.senha = "rooteiro";
+        this.senha = "";
         this.nomeBanco = "trab_lpg_1";
     }
     

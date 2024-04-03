@@ -1,4 +1,3 @@
-
 package com.miguelefernando.DAO;
 
 import java.sql.Connection;
@@ -6,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *commom user = 0 e admin = 1<br><br>para puxar os dados do excel, deverá
- * ser feito um construtor com id<br>
+ * commom user = 0 e admin = 1<br><br>para puxar os dados do excel, deverá ser
+ * feito um construtor com id<br>
  * no próprio MySQL podemos utilizar de:<br>
  * <br>
  * -- Desativa temporariamente a AUTO_INCREMENT para a coluna id<br>
@@ -17,9 +16,11 @@ import java.sql.SQLException;
  * valor2);<br>
  * -- Reativa a AUTO_INCREMENT para a coluna id<br>
  * SET @@auto_increment_increment=1;<br>
+ *
  * @author fernando e miguel
  * @since 0.0.1 04/24
  * @version 0.0.1
+ * @author Fernando
  */
 public class PessoaDAO {
 
@@ -35,6 +36,17 @@ public class PessoaDAO {
         this.banco = new BancoDAO();
     }
 
+    /**
+     * Construtor com ID para registros pré-existentes
+     *
+     * @param id_cliente
+     * @param nome
+     * @param cidade
+     * @param uf
+     * @param cpf
+     * @deprecated não implementado ainda
+     */
+    @Deprecated
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
         this.id = id_cliente;
         this.nome = nome;
@@ -45,6 +57,15 @@ public class PessoaDAO {
         this.banco = new BancoDAO();
     }
 
+    /**
+     * Construtor sem ID para novos registros
+     *
+     * @param nome
+     * @param cidade
+     * @param uf
+     * @param cpf
+     *
+     */
     public PessoaDAO(String nome, String cidade, String uf, String cpf) {
         //id no auto increment
         this.nome = nome;
@@ -54,17 +75,20 @@ public class PessoaDAO {
         this.banco = new BancoDAO();
         this.admin = 0;
     }
-/**
- * Método para salvar um cliente com ID.
- * // TODO: Implementar o método salvarClienteComId()<br>
- * @deprecated Este método será implementado no futuro.
- * @throws SQLException Se ocorrer um erro durante a execução do SQL.
- * 
- * // TODO: Implementar o método salvarClienteComId()
- */
-    public boolean salvarClienteComId() throws SQLException {
+
+    /**
+     * Método para salvar um cliente com ID. // TODO: Implementar o método
+     * salvarClienteComId()<br>
+     *
+     * @deprecated Este método será implementado no futuro.
+     * @throws SQLException Se ocorrer um erro durante a execução do SQL.
+     *
+     * // TODO: Implementar o método salvarClienteComId()
+     */
+    @Deprecated
+    public boolean salvarPessoaComId() throws SQLException {
         Connection conexao = this.banco.getConexao();
-        boolean resultado = false;
+        boolean resultado;
 
         String sql = "SET @@auto_increment_increment=0; "
                 + "INSERT INTO pessoa(id, nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, ?, 0);"
@@ -88,13 +112,13 @@ public class PessoaDAO {
         }
         return resultado;
     }
+
     /**
      * Salva uma pessoa no bdd como admin = 0
-     * @param void
      * @return boolean confirmação do insert
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public boolean salvarClienteSemId() throws SQLException {
+    public boolean salvarPessoaSemId() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado = false;
 
