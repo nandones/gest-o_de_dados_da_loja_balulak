@@ -7,7 +7,12 @@ package com.miguelefernando.notasloja.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import com.miguelefernando.DAO.PessoaDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,14 +38,15 @@ public class Painel_cadastro extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jtext_nome = new javax.swing.JTextField();
+        jtext_cpf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtext_cidade = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combobox_uf = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jbutton_cadastrar = new javax.swing.JButton();
+        jbutton_voltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,61 +59,148 @@ public class Painel_cadastro extends javax.swing.JPanel {
         jLabel2.setText("Nome:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 420, -1));
+        jtext_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jtext_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 420, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 420, -1));
+        jtext_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jtext_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 420, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("CPF:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
+        jtext_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jtext_cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Cidade:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PR", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 90, -1));
+        combobox_uf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        combobox_uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PR", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        add(combobox_uf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("UF:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Voltar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbutton_cadastrar.setBackground(new java.awt.Color(0, 255, 0));
+        jbutton_cadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbutton_cadastrar.setText("Cadastrar");
+        jbutton_cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jbutton_cadastrarMouseClicked(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 130, 50));
+        add(jbutton_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 130, 50));
+
+        jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
+        jbutton_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbutton_voltar.setText("Voltar");
+        jbutton_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_voltarMouseClicked(evt);
+            }
+        });
+        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        Janela.p3 = new Painel_clientes();
-        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-        maininterface.getContentPane().remove(this);
-        maininterface.add(Janela.p3, BorderLayout.CENTER);
-        maininterface.pack();
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void jbutton_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_cadastrarMouseClicked
+        String nome = jtext_nome.getText();
+        String cpf = jtext_cpf.getText();
+        String cidade = jtext_cidade.getText();
+        
+        
+        String uf = (String) combobox_uf.getSelectedItem();
+        if (uf == null) {
+            JOptionPane.showMessageDialog(null, "selecione um uf!");
+        } else if(verificarFormatoCPF(cpf)==false){
+            JOptionPane.showMessageDialog(null, "digite um cpf válido!");
+        }else if(nome != null && cpf!=null && cidade !=null){
+            PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
+            try {
+                pessoa.salvarPessoaSemId();
+                Janela.p3 = new Painel_clientes();
+                JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+                maininterface.getContentPane().remove(this);
+                maininterface.add(Janela.p3, BorderLayout.CENTER);
+                maininterface.pack();
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            } catch (SQLException ex) {
+                //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
+            }
+            
+        }else{
+           JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jbutton_cadastrarMouseClicked
 
+    private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
+        
+    }//GEN-LAST:event_jbutton_voltarMouseClicked
+
+    
+    public boolean verificarFormatoCPF(String cpf) {
+        // Remove caracteres não numéricos do CPF
+        cpf = cpf.replaceAll("[^0-9]", "");
+        
+        // Verifica se o CPF tem 11 dígitos
+        if (cpf.length() != 11) {
+            return false;
+        }
+        
+        // Verifica se todos os dígitos são iguais, o que é inválido para CPF
+        boolean todosDigitosIguais = true;
+        for (int i = 1; i < cpf.length(); i++) {
+            if (cpf.charAt(i) != cpf.charAt(0)) {
+                todosDigitosIguais = false;
+                break;
+            }
+        }
+        if (todosDigitosIguais) {
+            return false;
+        }
+        
+        // Verifica se o CPF é válido
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * (10 - i);
+        }
+        int resto = soma % 11;
+        int digitoVerificador1 = (resto < 2) ? 0 : (11 - resto);
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * (11 - i);
+        }
+        resto = soma % 11;
+        int digitoVerificador2 = (resto < 2) ? 0 : (11 - resto);
+
+        // Verifica se os dígitos verificadores estão corretos
+        if ((cpf.charAt(9) - '0' != digitoVerificador1) || (cpf.charAt(10) - '0' != digitoVerificador2)) {
+            return false;
+        }
+        
+        // Se chegou até aqui, o CPF é válido
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> combobox_uf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbutton_cadastrar;
+    private javax.swing.JButton jbutton_voltar;
+    private javax.swing.JTextField jtext_cidade;
+    private javax.swing.JTextField jtext_cpf;
+    private javax.swing.JTextField jtext_nome;
     // End of variables declaration//GEN-END:variables
 }

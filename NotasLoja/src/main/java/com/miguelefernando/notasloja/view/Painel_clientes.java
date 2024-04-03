@@ -64,8 +64,18 @@ public class Painel_clientes extends javax.swing.JPanel {
         });
 
         jbutton_procurarCliente.setText("Procurar cliente");
+        jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_procurarClienteMouseClicked(evt);
+            }
+        });
 
         jbutton_CadastrarCliente.setText("Cadastrar Cliente");
+        jbutton_CadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_CadastrarClienteMouseClicked(evt);
+            }
+        });
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
 
@@ -129,6 +139,18 @@ public class Painel_clientes extends javax.swing.JPanel {
         maininterface.add(Janela.p3, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_jbutton_voltarMouseClicked
+
+    private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
+
+    private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
+       Janela.p4 = new Painel_cadastro();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p4, BorderLayout.CENTER);
+        maininterface.pack();
+    }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

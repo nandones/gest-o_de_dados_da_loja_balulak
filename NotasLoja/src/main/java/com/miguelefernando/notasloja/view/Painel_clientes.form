@@ -115,11 +115,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Procurar cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbutton_procurarClienteMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbutton_CadastrarCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar Cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbutton_CadastrarClienteMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbutton_deletar_cliente1">
       <Properties>
