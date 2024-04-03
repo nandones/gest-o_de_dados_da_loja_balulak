@@ -84,15 +84,18 @@ public class ProdutoDAO {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql
-                = "INSERT INTO produto(id, preco, nome, sexo) VALUES (?);";
+        String sql = "SET @@auto_increment_increment=0; "
+                + "INSERT INTO produto(id, preco, nome, sexo) VALUES (?, ?, ?, ?);"
+                + "SET @@auto_increment_increment=1;";
         PreparedStatement consulta;
 
         try {
 
             consulta = conexao.prepareStatement(sql);
-            consulta.setDouble(1, this.preco);
-
+            consulta.setInt(1, this.id);
+            consulta.setDouble(2, this.preco);
+            consulta.setString(3, this.nome);
+            consulta.setString(4, String.valueOf(this.sexo));
             consulta.execute();
             resultado = true;
 
@@ -102,20 +105,23 @@ public class ProdutoDAO {
         }
         return resultado;
     }
+
     @Deprecated
     public boolean salvarProdutoComIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql
-                = "INSERT INTO produto(preco) VALUES (?);";
+        String sql = "SET @@auto_increment_increment=0; "
+                + "INSERT INTO produto(id, preco, nome) VALUES (?, ?, ?);"
+                + "SET @@auto_increment_increment=1;";
         PreparedStatement consulta;
 
         try {
 
             consulta = conexao.prepareStatement(sql);
-            consulta.setDouble(1, this.preco);
-
+            consulta.setInt(1, this.id);
+            consulta.setDouble(2, this.preco);
+            consulta.setString(3, this.nome);
             consulta.execute();
             resultado = true;
 
@@ -130,15 +136,15 @@ public class ProdutoDAO {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql
-                = "INSERT INTO produto(preco) VALUES (?);";
+        String sql = "INSERT INTO produto(preco, nome, sexo) VALUES (?, ?, ?);";
         PreparedStatement consulta;
 
         try {
 
             consulta = conexao.prepareStatement(sql);
             consulta.setDouble(1, this.preco);
-
+            consulta.setString(2, this.nome);
+            consulta.setString(3, String.valueOf(this.sexo));
             consulta.execute();
             resultado = true;
 
@@ -153,14 +159,14 @@ public class ProdutoDAO {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql
-                = "INSERT INTO produto(preco) VALUES (?);";
+        String sql = "INSERT INTO produto(preco, nome) VALUES (?, ?);";
         PreparedStatement consulta;
 
         try {
 
             consulta = conexao.prepareStatement(sql);
             consulta.setDouble(1, this.preco);
+            consulta.setString(2, this.nome);
 
             consulta.execute();
             resultado = true;
@@ -174,19 +180,19 @@ public class ProdutoDAO {
 
     public boolean salvarProduto() throws SQLException {
         if (this.id == 0 && this.sexo == '\0') {
-            salvarProdutSemIDSemSexo();        
+            salvarProdutSemIDSemSexo();
             return true;
         }
         if (this.id != 0 && this.sexo == '\0') {
-            salvarProdutoComIDSemSexo();        
+            salvarProdutoComIDSemSexo();
             return true;
         }
         if (this.id == 0 && this.sexo != '\0') {
-            salvarProdutoSemIDComSexo();        
+            salvarProdutoSemIDComSexo();
             return true;
         }
         if (this.id != 0 && this.sexo != '\0') {
-            salvarProdutoComIDComSexo();        
+            salvarProdutoComIDComSexo();
             return true;
         }
         return true;

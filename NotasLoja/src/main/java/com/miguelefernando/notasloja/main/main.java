@@ -29,5 +29,12 @@ public class main {
 //            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
+        ProdutoDAO p1 = new ProdutoDAO(2000.0, "regata blindada", 'W');
+        try {
+            System.out.println(p1.salvarProduto());
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
