@@ -16,13 +16,14 @@ public class ProdutoDAO {
     private String nome;
     private char sexo;
     private BancoDAO banco;
-    
+
     /**
-     * construtor com id somente para dados previamente cadastrados 
+     * construtor com id somente para dados previamente cadastrados
+     *
      * @param id
      * @param preco
      * @param nome
-     * @param sexo 
+     * @param sexo
      */
     public ProdutoDAO(int id, double preco, String nome, char sexo) {
         this.id = id;
@@ -31,11 +32,13 @@ public class ProdutoDAO {
         this.sexo = sexo;
         this.banco = new BancoDAO();
     }
+
     /**
      * construtor com id somente para dados previamente cadastrados
+     *
      * @param id
      * @param preco
-     * @param nome 
+     * @param nome
      */
     public ProdutoDAO(int id, double preco, String nome) {
         this.id = id;
@@ -43,11 +46,13 @@ public class ProdutoDAO {
         this.nome = nome;
         this.banco = new BancoDAO();
     }
+
     /**
      * construtor com sexo da roupa
+     *
      * @param preco
      * @param nome
-     * @param sexo 
+     * @param sexo
      */
     public ProdutoDAO(double preco, String nome, char sexo) {
         this.preco = preco;
@@ -55,10 +60,12 @@ public class ProdutoDAO {
         this.sexo = sexo;
         this.banco = new BancoDAO();
     }
+
     /**
      * construtor sem sexo da roupa
+     *
      * @param preco
-     * @param nome 
+     * @param nome
      */
     public ProdutoDAO(double preco, String nome) {
         this.preco = preco;
@@ -66,13 +73,12 @@ public class ProdutoDAO {
         this.banco = new BancoDAO();
     }
 
-    
     /*
     this.id = id;
         this.preco = preco;
         this.nome = nome;
         this.sexo = sexo;
-    */
+     */
     @Deprecated
     public boolean salvarProdutoComIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
@@ -96,7 +102,7 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-    
+    @Deprecated
     public boolean salvarProdutoComIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -119,7 +125,7 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-    
+
     public boolean salvarProdutoSemIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -142,7 +148,7 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-    
+
     public boolean salvarProdutSemIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -165,6 +171,25 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-    
+
+    public boolean salvarProduto() throws SQLException {
+        if (this.id == 0 && this.sexo == '\0') {
+            salvarProdutSemIDSemSexo();        
+            return true;
+        }
+        if (this.id != 0 && this.sexo == '\0') {
+            salvarProdutoComIDSemSexo();        
+            return true;
+        }
+        if (this.id == 0 && this.sexo != '\0') {
+            salvarProdutoSemIDComSexo();        
+            return true;
+        }
+        if (this.id != 0 && this.sexo != '\0') {
+            salvarProdutoComIDComSexo();        
+            return true;
+        }
+        return true;
+    }
 
 }
