@@ -28,11 +28,11 @@ public class PessoaDAO {
     private String cidade;
     private String uf;
     private String cpf;
-    private Banco banco;
+    private BancoDAO banco;
     private int admin;
 
     public PessoaDAO() {
-        this.banco = new Banco();
+        this.banco = new BancoDAO();
     }
 
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
@@ -42,7 +42,7 @@ public class PessoaDAO {
         this.uf = uf;
         this.cpf = cpf;
         this.admin = 0;
-        this.banco = new Banco();
+        this.banco = new BancoDAO();
     }
 
     public PessoaDAO(String nome, String cidade, String uf, String cpf) {
@@ -51,7 +51,7 @@ public class PessoaDAO {
         this.cidade = cidade;
         this.uf = uf;
         this.cpf = cpf;
-        this.banco = new Banco();
+        this.banco = new BancoDAO();
         this.admin = 0;
     }
 /**
