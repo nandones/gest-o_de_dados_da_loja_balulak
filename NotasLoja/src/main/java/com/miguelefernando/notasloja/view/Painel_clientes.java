@@ -4,6 +4,10 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author alunolages
@@ -33,6 +37,7 @@ public class Painel_clientes extends javax.swing.JPanel {
         jbutton_procurarCliente = new javax.swing.JButton();
         jbutton_CadastrarCliente = new javax.swing.JButton();
         jbutton_deletar_cliente1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 204, 204));
 
@@ -52,12 +57,20 @@ public class Painel_clientes extends javax.swing.JPanel {
 
         jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
         jbutton_voltar.setText("Voltar");
+        jbutton_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_voltarMouseClicked(evt);
+            }
+        });
 
         jbutton_procurarCliente.setText("Procurar cliente");
 
         jbutton_CadastrarCliente.setText("Cadastrar Cliente");
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setText("BALULAK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -74,11 +87,17 @@ public class Painel_clientes extends javax.swing.JPanel {
                     .addComponent(jbutton_CadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(jbutton_deletar_cliente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbutton_visualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,7 +107,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                         .addComponent(jbutton_CadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbutton_deletar_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(jbutton_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -96,11 +115,24 @@ public class Painel_clientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-        // TODO add your handling code here:
+        Janela.p2 = new Painel_PerfilCliente();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p2, BorderLayout.CENTER);
+        maininterface.pack();
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
+
+    private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
+        Janela.p3 = new Painel_clientes();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.pack();
+    }//GEN-LAST:event_jbutton_voltarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbutton_CadastrarCliente;

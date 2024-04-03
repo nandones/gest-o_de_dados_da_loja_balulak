@@ -5,7 +5,10 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -72,6 +75,11 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
         jbutton_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbutton_voltar.setText("voltar");
+        jbutton_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_voltarMouseClicked(evt);
+            }
+        });
         add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 150, 50));
 
         jLabel4.setText("id do cliente");
@@ -81,6 +89,14 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     private void jbutton_relatórioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_relatórioMouseClicked
         JOptionPane.showMessageDialog(null, "Será implementado em versões posteriores!");
     }//GEN-LAST:event_jbutton_relatórioMouseClicked
+
+    private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
+        Janela.p3 = new Painel_clientes();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.pack();
+    }//GEN-LAST:event_jbutton_voltarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
