@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import com.miguelefernando.DAO.PessoaDAO;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Painel_clientes extends javax.swing.JPanel {
      */
     public Painel_clientes() {
         initComponents();
+        abrirTabela();
         
     }
 
@@ -52,7 +55,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_visualizarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 200, 51));
+        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 190, 51));
 
         jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
         jbutton_voltar.setText("Voltar");
@@ -61,7 +64,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_voltarMouseClicked(evt);
             }
         });
-        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 193, 51));
+        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 193, 51));
 
         jbutton_procurarCliente.setText("Procurar cliente");
         jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,7 +72,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_procurarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 200, 51));
+        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 190, 51));
 
         jbutton_CadastrarCliente.setText("Cadastrar Cliente");
         jbutton_CadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,28 +80,28 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_CadastrarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 51));
+        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 190, 51));
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
-        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 200, 51));
+        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 190, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setText("BALULAK");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         jtable_tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id Cliente", "Nome Cliente"
+                "id Cliente", "Nome Cliente", "CPF"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -111,10 +114,24 @@ public class Painel_clientes extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jtable_tabela);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 300, 430));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
+        int selectedRow = jtable_tabela.getSelectedRow();
+        if (selectedRow!=-1) {
+            String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
+            String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
+            String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
+            
+            Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
+            JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+            maininterface.getContentPane().remove(this);
+            maininterface.add(Janela.p2, BorderLayout.CENTER);
+            maininterface.pack();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }
         
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
@@ -148,7 +165,8 @@ public class Painel_clientes extends javax.swing.JPanel {
             String idString = String.valueOf(listaPessoa.get(i).getId());
             String [] linha = {
                 idString,
-                listaPessoa.get(i).getNome()
+                listaPessoa.get(i).getNome(),
+                listaPessoa.get(i).getCpf()
             };
             modelo.addRow(linha);
         }
