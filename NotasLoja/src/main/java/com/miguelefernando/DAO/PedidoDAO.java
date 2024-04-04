@@ -60,6 +60,66 @@ public class PedidoDAO {
         this.total = total;
         this.banco = new BancoDAO();
     }
+
+    public PedidoDAO() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public Date getEmissao() {
+        return emissao;
+    }
+
+    public void setEmissao(Date emissao) {
+        this.emissao = emissao;
+    }
+
+    public Date getFechamento() {
+        return fechamento;
+    }
+
+    public void setFechamento(Date fechamento) {
+        this.fechamento = fechamento;
+    }
+
+    public char getStatus() {
+        return status;
+    }
+
+    public void setStatus(char status) {
+        this.status = status;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public BancoDAO getBanco() {
+        return banco;
+    }
+
+    public void setBanco(BancoDAO banco) {
+        this.banco = banco;
+    }
+    
     
         private boolean salvarPedidoDAOSemID() throws SQLException {
         Connection conexao = this.banco.getConexao();

@@ -6,7 +6,7 @@ package com.miguelefernando.notasloja.utils;
 
 /**
  *
- * @author nando
+ * @author fernando
  */
 public class Mock {
     
