@@ -19,12 +19,13 @@ public class ProdutoDAO {
 
     /**
      * construtor com id somente para dados previamente cadastrados
-     *
+     * @deprecated 
      * @param id
      * @param preco
      * @param nome
      * @param sexo
      */
+    @Deprecated
     public ProdutoDAO(int id, double preco, String nome, char sexo) {
         this.id = id;
         this.preco = preco;
@@ -35,11 +36,12 @@ public class ProdutoDAO {
 
     /**
      * construtor com id somente para dados previamente cadastrados
-     *
+     * @deprecated nao utilizavel ainda
      * @param id
      * @param preco
      * @param nome
      */
+    @Deprecated
     public ProdutoDAO(int id, double preco, String nome) {
         this.id = id;
         this.preco = preco;

@@ -25,7 +25,7 @@ public class BancoDAO {
         this.porta = "3306";
         this.banco = "mysql";
         this.usuario = "root";
-        this.senha = "rooteiro";
+        this.senha = "";
         this.nomeBanco = "trab_lpg_1";
     }
     
