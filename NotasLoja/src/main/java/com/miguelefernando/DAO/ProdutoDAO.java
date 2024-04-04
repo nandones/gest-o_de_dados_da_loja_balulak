@@ -81,6 +81,48 @@ public class ProdutoDAO {
         this.nome = nome;
         this.sexo = sexo;
      */
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public BancoDAO getBanco() {
+        return banco;
+    }
+
+    public void setBanco(BancoDAO banco) {
+        this.banco = banco;
+    }
+    
+    
     @Deprecated
     private boolean salvarProdutoComIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();

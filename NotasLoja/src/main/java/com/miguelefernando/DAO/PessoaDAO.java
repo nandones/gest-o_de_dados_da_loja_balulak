@@ -205,10 +205,10 @@ public class PessoaDAO {
         return resultado;
     }
 
-    public List<PessoaDAO> listarPessoasDAO() {
+    public ArrayList<PessoaDAO> listarPessoasDAO() {
 
         Connection conexao = this.banco.getConexao();
-        List<PessoaDAO> lista = new ArrayList<>();
+        ArrayList<PessoaDAO> lista = new ArrayList<>();
 
         String sql = "SELECT * FROM pessoa";
         ResultSet resultados;
