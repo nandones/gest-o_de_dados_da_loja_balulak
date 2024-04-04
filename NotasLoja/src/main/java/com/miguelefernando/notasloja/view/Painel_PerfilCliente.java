@@ -5,6 +5,11 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import com.miguelefernando.DAO.PedidoDAO;
+import com.miguelefernando.DAO.PessoaDAO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
@@ -17,6 +22,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     public Painel_PerfilCliente(String nome, String id, String cpf) {
         initComponents();
         setLabels(nome, id, cpf);
+        setTabela(id);
         
     }
 
@@ -35,12 +41,13 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         lb_cpf = new javax.swing.JLabel();
         lb_id = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        bt_tabela = new javax.swing.JTable();
+        jt_tabela = new javax.swing.JTable();
         bt_relatorio = new javax.swing.JButton();
         bt_voltar = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
+        setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lb_foto.setText("jLabel1");
@@ -55,25 +62,37 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         lb_id.setText("jLabel5");
         add(lb_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 180, -1));
 
-        bt_tabela.setModel(new javax.swing.table.DefaultTableModel(
+        jt_tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id Pedido", "Valor Total", "Emissão", "Fechamento", "Status"
             }
-        ));
-        jScrollPane1.setViewportView(bt_tabela);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jt_tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 430, 200));
 
-        bt_relatorio.setText("jButton1");
+        bt_relatorio.setText("Relatório");
         add(bt_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 120, 40));
 
-        bt_voltar.setText("jButton2");
+        bt_voltar.setText("Voltar");
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -83,13 +102,47 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         lb_cpf.setText(cpf);
     }
     
+    public void setTabela(String id){
+        
+        PedidoDAO pedido = new PedidoDAO();
+        ArrayList<PedidoDAO> listaPedido;
+        listaPedido = (ArrayList<PedidoDAO>) pedido.listarPedidosDAO();
+        DefaultTableModel modelo = (DefaultTableModel) this.jt_tabela.getModel();
+        
+        for(int i = 0; i < listaPedido.size(); i++ ){
+            String idCliente = String.valueOf(listaPedido.get(i).getId_cliente());
+            if(idCliente.equals(id)){
+            String idString = String.valueOf(listaPedido.get(i).getId());
+            String valorTotal = String.valueOf(listaPedido.get(i).getTotal());
+            String emissao = String.valueOf(listaPedido.get(i).getEmissao());
+            String fechamento = String.valueOf(listaPedido.get(i).getFechamento());
+            String status = String.valueOf(listaPedido.get(i).getStatus());
+            String [] linha = {
+                idString,
+                valorTotal,
+                emissao,
+                fechamento,
+                status
+                
+            };
+            modelo.addRow(linha);
+        }
+    }
+        jt_tabela.changeSelection(0, 0, false, false);
+}
+    
+    public void qualquercoisa(){
+        
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_relatorio;
-    private javax.swing.JTable bt_tabela;
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jt_tabela;
     private javax.swing.JLabel lb_cpf;
     private javax.swing.JLabel lb_foto;
     private javax.swing.JLabel lb_id;

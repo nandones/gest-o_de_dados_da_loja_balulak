@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *\lfvgheruo
  * @author Fernando
@@ -22,6 +21,7 @@ public class main {
         PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "sc", "000.000.000-03");
         PessoaDAO p5 = new PessoaDAO("ADAM SANDVER", "eua", "pr", "000.000.000-04");
         try {
+
             System.out.println(p1.salvarPessoaSemId());
             System.out.println(p2.salvarPessoaSemId());
             System.out.println(p3.salvarPessoaSemId());
