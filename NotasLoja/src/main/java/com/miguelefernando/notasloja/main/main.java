@@ -1,5 +1,7 @@
 package com.miguelefernando.notasloja.main;
 
+
+
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
 import java.sql.SQLException;
