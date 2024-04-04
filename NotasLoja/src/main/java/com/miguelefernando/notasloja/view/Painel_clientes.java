@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import com.miguelefernando.DAO.PessoaDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -141,9 +143,16 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
     public void abrirTabela(){
+        PessoaDAO pessoa = new PessoaDAO();
+        ArrayList<PessoaDAO> listaPessoa;
+        listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
         
-        
+        for(int i = 0; i < listaPessoa.size(); i++ ){
+            String [] linha = {
+                
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
