@@ -1,8 +1,14 @@
 package com.miguelefernando.DAO;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * commom user = 0 e admin = 1<br><br>para puxar os dados do excel, deverá ser
@@ -142,5 +148,34 @@ public class PessoaDAO {
         }
         return resultado;
     }
+    
+    public List<PessoaDAO> listarPessoasDAO(){
+        
+        Connection conexao = this.banco.getConexao();
+        List<PessoaDAO> lista = new ArrayList<>();
+        
+        String sql = "SELECT * FROM pessoa";
+        ResultSet resultados;
+        
+        try {
+            resultados = conexao.createStatement().executeQuery(sql);
+            PessoaDAO objeto;
+            while(resultados.next()){
+                int id = Integer.parseInt(resultados.getString("id"));
+                String nome = resultados.getString("nome");
+                String cidade = resultados.getString("cidade");
+                String uf = resultados.getString("uf");
+                String cpf = resultados.getString("CPF");
+                int admin = Integer.parseInt(resultados.getString("admin"));
+                objeto = new PessoaDAO(admin, nome, cidade, uf, cpf);
+                lista.add(objeto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERRO NA LEITURA DE DADOS DO BD: "+ ex.getMessage());
+        }
+        return lista;
+    }
+    
 
 }
