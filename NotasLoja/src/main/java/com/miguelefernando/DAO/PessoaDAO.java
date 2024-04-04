@@ -1,6 +1,5 @@
 package com.miguelefernando.DAO;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,8 +118,65 @@ public class PessoaDAO {
         return resultado;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public BancoDAO getBanco() {
+        return banco;
+    }
+
+    public void setBanco(BancoDAO banco) {
+        this.banco = banco;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
     /**
      * Salva uma pessoa no bdd como admin = 0
+     *
      * @return boolean confirmação do insert
      * @throws SQLException
      */
@@ -148,19 +204,19 @@ public class PessoaDAO {
         }
         return resultado;
     }
-    
-    public List<PessoaDAO> listarPessoasDAO(){
-        
+
+    public List<PessoaDAO> listarPessoasDAO() {
+
         Connection conexao = this.banco.getConexao();
         List<PessoaDAO> lista = new ArrayList<>();
-        
+
         String sql = "SELECT * FROM pessoa";
         ResultSet resultados;
-        
+
         try {
             resultados = conexao.createStatement().executeQuery(sql);
             PessoaDAO objeto;
-            while(resultados.next()){
+            while (resultados.next()) {
                 int id = Integer.parseInt(resultados.getString("id"));
                 String nome = resultados.getString("nome");
                 String cidade = resultados.getString("cidade");
@@ -172,10 +228,9 @@ public class PessoaDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ERRO NA LEITURA DE DADOS DO BD: "+ ex.getMessage());
+            System.out.println("ERRO NA LEITURA DE DADOS DO BD: " + ex.getMessage());
         }
         return lista;
     }
-    
 
 }

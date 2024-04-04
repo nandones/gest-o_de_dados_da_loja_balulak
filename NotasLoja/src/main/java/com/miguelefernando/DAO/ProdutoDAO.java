@@ -82,7 +82,7 @@ public class ProdutoDAO {
         this.sexo = sexo;
      */
     @Deprecated
-    public boolean salvarProdutoComIDComSexo() throws SQLException {
+    private boolean salvarProdutoComIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -109,7 +109,7 @@ public class ProdutoDAO {
     }
 
     @Deprecated
-    public boolean salvarProdutoComIDSemSexo() throws SQLException {
+    private boolean salvarProdutoComIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -134,7 +134,7 @@ public class ProdutoDAO {
         return resultado;
     }
 
-    public boolean salvarProdutoSemIDComSexo() throws SQLException {
+    private boolean salvarProdutoSemIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -157,7 +157,7 @@ public class ProdutoDAO {
         return resultado;
     }
 
-    public boolean salvarProdutSemIDSemSexo() throws SQLException {
+    private boolean salvarProdutSemIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
