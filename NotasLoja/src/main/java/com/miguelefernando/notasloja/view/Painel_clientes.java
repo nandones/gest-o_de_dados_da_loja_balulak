@@ -7,6 +7,7 @@ package com.miguelefernando.notasloja.view;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Painel_clientes extends javax.swing.JPanel {
      */
     public Painel_clientes() {
         initComponents();
+        
     }
 
     /**
@@ -30,23 +32,17 @@ public class Painel_clientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jbutton_visualizarCliente = new javax.swing.JButton();
         jbutton_voltar = new javax.swing.JButton();
         jbutton_procurarCliente = new javax.swing.JButton();
         jbutton_CadastrarCliente = new javax.swing.JButton();
         jbutton_deletar_cliente1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtable_tabela = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 204, 204));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbutton_visualizarCliente.setText("Visualizar Cliente");
         jbutton_visualizarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -54,6 +50,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_visualizarClienteMouseClicked(evt);
             }
         });
+        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 200, 51));
 
         jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
         jbutton_voltar.setText("Voltar");
@@ -62,6 +59,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_voltarMouseClicked(evt);
             }
         });
+        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 193, 51));
 
         jbutton_procurarCliente.setText("Procurar cliente");
         jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,6 +67,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_procurarClienteMouseClicked(evt);
             }
         });
+        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 200, 51));
 
         jbutton_CadastrarCliente.setText("Cadastrar Cliente");
         jbutton_CadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,56 +75,45 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_CadastrarClienteMouseClicked(evt);
             }
         });
+        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 51));
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
+        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 200, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setText("BALULAK");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbutton_visualizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbutton_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jbutton_procurarCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jbutton_CadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jbutton_deletar_cliente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbutton_visualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbutton_procurarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbutton_CadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbutton_deletar_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addComponent(jbutton_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
+        jtable_tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id Cliente", "Nome Cliente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtable_tabela);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 300, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-        Janela.p2 = new Painel_PerfilCliente();
+        Janela.p2 = new Painel_PerfilClientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p2, BorderLayout.CENTER);
@@ -152,15 +140,20 @@ public class Painel_clientes extends javax.swing.JPanel {
         maininterface.pack();
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
+    public void abrirTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbutton_CadastrarCliente;
     private javax.swing.JButton jbutton_deletar_cliente1;
     private javax.swing.JButton jbutton_procurarCliente;
     private javax.swing.JButton jbutton_visualizarCliente;
     private javax.swing.JButton jbutton_voltar;
+    private javax.swing.JTable jtable_tabela;
     // End of variables declaration//GEN-END:variables
 }
