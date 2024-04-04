@@ -14,7 +14,7 @@ public class Janela extends javax.swing.JFrame {
 
     
     static Painel_menu pl;
-    
+    static Painel_PerfilCliente p2;
     static Painel_clientes p3;
     static Painel_cadastro p4;
     
