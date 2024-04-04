@@ -115,11 +115,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-        Janela.p2 = new Painel_PerfilClientes();
-        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-        maininterface.getContentPane().remove(this);
-        maininterface.add(Janela.p2, BorderLayout.CENTER);
-        maininterface.pack();
+        
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
@@ -149,10 +145,14 @@ public class Painel_clientes extends javax.swing.JPanel {
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
         
         for(int i = 0; i < listaPessoa.size(); i++ ){
+            String idString = String.valueOf(listaPessoa.get(i).getId());
             String [] linha = {
-                
-            }
+                idString,
+                listaPessoa.get(i).getNome()
+            };
+            modelo.addRow(linha);
         }
+        jtable_tabela.changeSelection(0, 0, false, false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
