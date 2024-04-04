@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Painel_PerfilClientes extends javax.swing.JPanel {
      */
     public Painel_PerfilClientes() {
         initComponents();
+        
+        
     }
 
     /**
@@ -35,11 +38,11 @@ public class Painel_PerfilClientes extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlist_pedidos = new javax.swing.JList<>();
         jbutton_relatório = new javax.swing.JButton();
         jbutton_voltar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Jtable_tabela = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,15 +55,6 @@ public class Painel_PerfilClientes extends javax.swing.JPanel {
 
         jLabel3.setText("cpf do cliente");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, -1));
-
-        jlist_pedidos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jlist_pedidos);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 480, 260));
 
         jbutton_relatório.setBackground(new java.awt.Color(0, 255, 0));
         jbutton_relatório.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -84,6 +78,33 @@ public class Painel_PerfilClientes extends javax.swing.JPanel {
 
         jLabel4.setText("id do cliente");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 170, -1));
+
+        Jtable_tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Pedido", "Valor Pedido", "Emissão", "Fechamento", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(Jtable_tabela);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 480, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,16 +140,23 @@ public class Painel_PerfilClientes extends javax.swing.JPanel {
         maininterface.pack();
     }//GEN-LAST:event_jbutton_voltarMouseClicked
 
+    public void abrirTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) this.Jtable_tabela.getModel();
+        
+        for(int i = 0; i < ){
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Jtable_tabela;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbutton_relatório;
     private javax.swing.JButton jbutton_voltar;
-    private javax.swing.JList<String> jlist_pedidos;
     // End of variables declaration//GEN-END:variables
 }
