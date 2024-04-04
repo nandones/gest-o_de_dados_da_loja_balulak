@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.miguelefernando.notasloja.view;
 
@@ -12,14 +11,14 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author User
+ * @author alunolages
  */
-public class Painel_PerfilCliente extends javax.swing.JPanel {
+public class Painel_PerfilClientes extends javax.swing.JPanel {
 
     /**
-     * Creates new form Janela_PerfilCliente
+     * Creates new form Painel_PerfilClientes
      */
-    public Painel_PerfilCliente() {
+    public Painel_PerfilClientes() {
         initComponents();
     }
 
@@ -32,6 +31,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,17 +41,17 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         jbutton_voltar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 204, 204));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("foto ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 100, 100));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 100, 100));
 
         jLabel2.setText("nome do cliente");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 170, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 170, -1));
 
         jLabel3.setText("cpf do cliente");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, -1));
 
         jlist_pedidos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -60,7 +60,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jlist_pedidos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 480, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 480, 260));
 
         jbutton_relatório.setBackground(new java.awt.Color(0, 255, 0));
         jbutton_relatório.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -70,7 +70,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
                 jbutton_relatórioMouseClicked(evt);
             }
         });
-        add(jbutton_relatório, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 150, 50));
+        jPanel1.add(jbutton_relatório, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 150, 50));
 
         jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
         jbutton_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -80,10 +80,31 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
                 jbutton_voltarMouseClicked(evt);
             }
         });
-        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 150, 50));
+        jPanel1.add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 150, 50));
 
         jLabel4.setText("id do cliente");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 170, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 170, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 453, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_relatórioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_relatórioMouseClicked
@@ -104,6 +125,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbutton_relatório;
     private javax.swing.JButton jbutton_voltar;
