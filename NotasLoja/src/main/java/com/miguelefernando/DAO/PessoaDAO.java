@@ -217,7 +217,7 @@ public class PessoaDAO {
             resultados = conexao.createStatement().executeQuery(sql);
             PessoaDAO objeto;
             while (resultados.next()) {
-                int id = Integer.parseInt(resultados.getString("id"));
+                int id = resultados.getInt("id");
                 String nome = resultados.getString("nome");
                 String cidade = resultados.getString("cidade");
                 String uf = resultados.getString("uf");
