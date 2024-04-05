@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import com.miguelefernando.DAO.PessoaDAO;
+import com.miguelefernando.notasloja.utils.Mock;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,7 +26,8 @@ public class Painel_clientes extends javax.swing.JPanel {
     public Painel_clientes() {
         initComponents();
         abrirTabela();
-        
+        bt_voltar.setVisible(false);
+
     }
 
     /**
@@ -44,7 +46,9 @@ public class Painel_clientes extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable_tabela = new javax.swing.JTable();
+        bt_voltar = new javax.swing.JButton();
         bt_atualizarCadastro = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,7 +109,20 @@ public class Painel_clientes extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jtable_tabela);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 430));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 410));
+
+        bt_voltar.setText("Voltar");
+        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_voltarMouseClicked(evt);
+            }
+        });
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
+        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 190, 50));
 
         bt_atualizarCadastro.setText("Atualizar Cadastro");
         bt_atualizarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,49 +131,60 @@ public class Painel_clientes extends javax.swing.JPanel {
             }
         });
         add(bt_atualizarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 190, 50));
+
+        jRadioButton1.setText("mock");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
 //        int selectedRow = jtable_tabela.getSelectedRow();
 //        if (selectedRow!=-1) {
-            String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
-            String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
-            String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
-            
-            System.out.println("ta aqui");
-            Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
-            JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-            maininterface.getContentPane().remove(this);
-            maininterface.add(Janela.p2, BorderLayout.CENTER);
-            maininterface.pack();
-            System.out.println("ta lá");
-        
-        
+        String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
+        String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
+        String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
+
+        System.out.println("ta aqui");
+        Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p2, BorderLayout.CENTER);
+        maininterface.pack();
+
+
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
         String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
         
+
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
-        for(int i = 0; i < listaPessoa.size(); i++ ){
+
+        for (int i = listaPessoa.size() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
             String nomeCliente = String.valueOf(listaPessoa.get(i).getNome());
             String id = String.valueOf(listaPessoa.get(i).getId());
-            if(nomeCliente.equals(textoDigitado)){
-            String [] linha = {
-                id,
-                listaPessoa.get(i).getNome(),
-                listaPessoa.get(i).getCpf()
-            };
-            
-            modelo.addRow(linha);
+            if (nomeCliente.equals(textoDigitado)) {
+                String[] linha = {
+                    id,
+                    listaPessoa.get(i).getNome(),
+                    listaPessoa.get(i).getCpf()
+                };
+
+                modelo.addRow(linha);
             }
         }
         jtable_tabela.changeSelection(0, 0, false, false);
-    
-        
+        bt_voltar.setVisible(true);
+
+
     }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
 
     private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
@@ -168,18 +196,37 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
-        
+
     }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
 
-    public void abrirTabela(){
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        Mock mock = new Mock();
+        mock.init();
+        
+        abrirTabela();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_voltarMouseClicked
+
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        bt_voltar.setVisible(false);
+        abrirTabela();
+    }//GEN-LAST:event_bt_voltarActionPerformed
+
+    public void abrirTabela() {
+        
+        
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
         
-        for(int i = 0; i < listaPessoa.size(); i++ ){
+        modelo.setRowCount(0);
+        for (int i = 0; i < listaPessoa.size(); i++) {
             String idString = String.valueOf(listaPessoa.get(i).getId());
-            String [] linha = {
+            String[] linha = {
                 idString,
                 listaPessoa.get(i).getNome(),
                 listaPessoa.get(i).getCpf()
@@ -191,7 +238,9 @@ public class Painel_clientes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_atualizarCadastro;
+    private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbutton_CadastrarCliente;
     private javax.swing.JButton jbutton_deletar_cliente1;

@@ -106,7 +106,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
                 bt_relatorioMouseClicked(evt);
             }
         });
-        add(bt_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 120, 40));
+        add(bt_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 120, 40));
 
         bt_voltar.setText("Voltar");
         bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,7 +114,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
                 bt_voltarMouseClicked(evt);
             }
         });
-        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 120, 40));
+        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_relatorioMouseClicked

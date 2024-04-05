@@ -63,6 +63,11 @@ public class Painel_cadastro extends javax.swing.JPanel {
         add(jtext_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 420, -1));
 
         jtext_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtext_cpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtext_cpfKeyTyped(evt);
+            }
+        });
         add(jtext_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 420, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -109,6 +114,10 @@ public class Painel_cadastro extends javax.swing.JPanel {
         String nome = jtext_nome.getText();
         String cpf = jtext_cpf.getText();
         String cidade = jtext_cidade.getText();
+       
+        nome = nome.toUpperCase();
+        cidade = cidade.toUpperCase();
+    
         
         
         String uf = (String) combobox_uf.getSelectedItem();
@@ -116,8 +125,12 @@ public class Painel_cadastro extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "selecione um uf!");
         } else if(verificarFormatoCPF(cpf)==false){
             JOptionPane.showMessageDialog(null, "digite um cpf válido!");
+            jtext_cpf.setText("");
         }else if(nome != null && cpf!=null && cidade !=null){
+            cpf = formatarCPF(cpf);
+           
             PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
+            
             pessoa.SalvarPessoa(); //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
             Janela.p3 = new Painel_clientes();
             JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -142,6 +155,10 @@ public class Painel_cadastro extends javax.swing.JPanel {
         maininterface.add(Janela.p3, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_jbutton_voltarMouseClicked
+
+    private void jtext_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtext_cpfKeyTyped
+        formatacaoCPF(evt);
+    }//GEN-LAST:event_jtext_cpfKeyTyped
 
     
     public boolean verificarFormatoCPF(String cpf) {
@@ -187,6 +204,25 @@ public class Painel_cadastro extends javax.swing.JPanel {
         
         // Se chegou até aqui, o CPF é válido
         return true;
+    }
+    
+    public static String formatarCPF(String cpf) {
+        if (cpf == null || cpf.length() != 11) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+
+        // Formatar o CPF com pontos e hífen
+        return cpf.substring(0, 3) + "." +
+               cpf.substring(3, 6) + "." +
+               cpf.substring(6, 9) + "-" +
+               cpf.substring(9);
+    }
+    
+    public void formatacaoCPF(java.awt.event.KeyEvent evt){
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
