@@ -48,7 +48,6 @@ public class Mock {
         } catch (SQLException ex) {
             System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
         }
-//
         PessoaDAO p1 = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
         PessoaDAO p2 = new PessoaDAO("MONARK", "eua", "ac", "000.000.000-01");
         PessoaDAO p3 = new PessoaDAO("NANDO MOURA", "sp", "sp", "000.000.000-02");
@@ -82,5 +81,19 @@ public class Mock {
 
         }
 
+    }
+
+    public void DeleteAllPessoa() {
+        BancoDAO banco = new BancoDAO();
+        Connection conexao = banco.getConexao();
+
+        String sql = "DELETE FROM pessoa WHERE nome IS NOT NULL; ";
+
+        try {
+            Statement statement = conexao.createStatement();
+            statement.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
+        }
     }
 }
