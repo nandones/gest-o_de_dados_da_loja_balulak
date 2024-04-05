@@ -78,6 +78,11 @@ public class Painel_clientes extends javax.swing.JPanel {
         add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 190, 51));
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
+        jbutton_deletar_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_deletar_cliente1MouseClicked(evt);
+            }
+        });
         add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 190, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -148,7 +153,7 @@ public class Painel_clientes extends javax.swing.JPanel {
         String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
         String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
 
-        System.out.println("ta aqui");
+        
         Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -196,7 +201,8 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
-
+        
+        
     }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -214,6 +220,20 @@ public class Painel_clientes extends javax.swing.JPanel {
         bt_voltar.setVisible(false);
         abrirTabela();
     }//GEN-LAST:event_bt_voltarActionPerformed
+
+    private void jbutton_deletar_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_deletar_cliente1MouseClicked
+        PessoaDAO pessoa = new PessoaDAO();
+        ArrayList<PessoaDAO> listaPessoa;
+        listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
+        DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
+        int selectedRow = jtable_tabela.getSelectedRow();
+        int id = Integer.valueOf((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
+        pessoa = pessoa.getPessoa(id);
+        pessoa.excluir();
+        abrirTabela();
+        
+        
+    }//GEN-LAST:event_jbutton_deletar_cliente1MouseClicked
 
     public void abrirTabela() {
         
