@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * commom user = 0 e admin = 1<br><br>para puxar os dados do excel, deverá ser
@@ -212,6 +213,7 @@ public class PessoaDAO {
             }
         } catch (SQLException ex) {
             excluido = false;
+            JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL EXCLUIR UM CLIENTE COM PEDIDOS", "ERRO", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "nao fora excluido nenhum registro", ex);
         }
 
@@ -221,7 +223,7 @@ public class PessoaDAO {
     public PessoaDAO getPessoa(int codigo) {
         Connection conexao = this.banco.getConexao();
 
-        String sql = "DELETE FROM pessoa WHERE id = ?";
+        String sql = "SELECT * FROM pessoa WHERE id = ?";
         PreparedStatement consulta;
         ResultSet resultado;
 
@@ -242,6 +244,7 @@ public class PessoaDAO {
                 int admin = Integer.parseInt(resultado.getString("admin"));
                 objeto = new PessoaDAO(id, nome, cidade, uf, cpf);
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
