@@ -227,9 +227,10 @@ public class Painel_clientes extends javax.swing.JPanel {
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
         int selectedRow = jtable_tabela.getSelectedRow();
-        int id = Integer.valueOf((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
-        pessoa = pessoa.getPessoa(id);
-        pessoa.excluir();
+        int id = Integer.parseInt((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
+        System.out.println("id do excluido : "+ id);
+        PessoaDAO pessoaExcluida = pessoa.getPessoa(id);
+        pessoaExcluida.excluir();
         abrirTabela();
         
         
