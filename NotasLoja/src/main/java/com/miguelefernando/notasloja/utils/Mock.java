@@ -28,10 +28,10 @@ public class Mock {
 
         String sql
                 = "SET SQL_SAFE_UPDATES = 0;"
-                + "DELETE FROM pessoa;"
-                + "DELETE FROM produto;"
-                + "DELETE FROM produtopedido;"
-                + "DELETE FROM pedido_produto;";
+                + "DELETE FROM pessoa WHERE nome IS NOT NULL;"
+                + "DELETE FROM produto WHERE nome IS NOT NULL;"
+                + "DELETE FROM produtopedido WHERE id_pedido IS NOT NULL;"
+                + "DELETE FROM pedido_produto WHERE id IS NOT NULL;";
         PreparedStatement consulta;
 
         try {
