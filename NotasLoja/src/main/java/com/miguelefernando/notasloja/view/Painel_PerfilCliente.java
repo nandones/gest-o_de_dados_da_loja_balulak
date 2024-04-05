@@ -7,7 +7,13 @@ package com.miguelefernando.notasloja.view;
 
 import com.miguelefernando.DAO.PedidoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
+import com.miguelefernando.DAO.ProdutoDAO;
+import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -85,16 +91,58 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jt_tabela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jt_tabelaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jt_tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 430, 200));
 
         bt_relatorio.setText("Relatório");
+        bt_relatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_relatorioMouseClicked(evt);
+            }
+        });
         add(bt_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 120, 40));
 
         bt_voltar.setText("Voltar");
+        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_voltarMouseClicked(evt);
+            }
+        });
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_relatorioMouseClicked
+         JOptionPane.showMessageDialog(null, "Indisponível nessa versão!");
+    }//GEN-LAST:event_bt_relatorioMouseClicked
+
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
+        Janela.p3 = new Painel_clientes();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.pack();
+    }//GEN-LAST:event_bt_voltarMouseClicked
+
+    private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        String id = (String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0);
+        int selectedRow = jt_tabela.getSelectedRow();
+        PedidoDAO pedido = new PedidoDAO();
+        ArrayList<PedidoDAO> listaPedido;
+        listaPedido = (ArrayList<PedidoDAO>) pedido.listarPedidosDAO();
+        DefaultTableModel modelo = (DefaultTableModel) this.jt_tabela.getModel();
+        
+        
+            
+        
+        }
+    }//GEN-LAST:event_jt_tabelaKeyReleased
 
     public void setLabels(String nome, String id, String cpf){
         lb_nome.setText(nome);

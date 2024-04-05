@@ -136,10 +136,10 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
-        Janela.p3 = new Painel_clientes();
+        Janela.pl = new Painel_menu();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
-        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.add(Janela.pl, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_jbutton_voltarMouseClicked
 
