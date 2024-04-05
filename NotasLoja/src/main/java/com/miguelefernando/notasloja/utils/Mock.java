@@ -48,7 +48,7 @@ public class Mock {
         } catch (SQLException ex) {
             System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
         }
-
+//
         PessoaDAO p1 = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
         PessoaDAO p2 = new PessoaDAO("MONARK", "eua", "ac", "000.000.000-01");
         PessoaDAO p3 = new PessoaDAO("NANDO MOURA", "sp", "sp", "000.000.000-02");
