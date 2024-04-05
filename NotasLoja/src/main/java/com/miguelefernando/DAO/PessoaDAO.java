@@ -254,7 +254,7 @@ public class PessoaDAO {
     public boolean update() {
         Connection conexao = this.banco.getConexao();
 
-        String sql = "UPDATE pessoa SET nome = ?, cidade = ?, uf = ?, CPF = ?";
+        String sql = "UPDATE pessoa SET nome = ?, cidade = ?, uf = ?, CPF = ? WHERE id = ?";
         PreparedStatement consulta;
         boolean atualizado = false;//
 
@@ -264,6 +264,7 @@ public class PessoaDAO {
             consulta.setString(2, this.cidade);
             consulta.setString(3, this.uf);
             consulta.setString(4, this.cpf);
+            consulta.setInt(5, id);
             int linhasAtualizadas = consulta.executeUpdate();
             if (linhasAtualizadas > 0) {
                 atualizado = true;

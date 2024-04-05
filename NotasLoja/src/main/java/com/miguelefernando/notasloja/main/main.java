@@ -20,6 +20,5 @@ public class main {
         Janela mi = new Janela();
         mi.setVisible(true);
         mi.setLocationRelativeTo(null);
-
     }
 }
