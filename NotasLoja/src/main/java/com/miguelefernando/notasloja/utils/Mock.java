@@ -11,6 +11,7 @@ import com.miguelefernando.notasloja.main.main;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,27 +27,22 @@ public class Mock {
         BancoDAO banco = new BancoDAO();
         Connection conexao = banco.getConexao();
 
-        String sql
-                = "SET SQL_SAFE_UPDATES = 0;"
-                + "DELETE FROM pessoa WHERE nome IS NOT NULL;"
-                + "DELETE FROM produto WHERE nome IS NOT NULL;"
-                + "DELETE FROM produtopedido WHERE id_pedido IS NOT NULL;"
+        String sql = "SET SQL_SAFE_UPDATES = 0; "
+                + "DELETE FROM pessoa WHERE nome IS NOT NULL; "
+                + "DELETE FROM produto WHERE nome IS NOT NULL; "
+                + "DELETE FROM produtopedido WHERE id_pedido IS NOT NULL; "
                 + "DELETE FROM pedido_produto WHERE id IS NOT NULL;";
-        PreparedStatement consulta;
 
         try {
-            //consulta = conexao.prepareStatement(sql);
-            consulta = (PreparedStatement) conexao.createStatement().executeQuery(sql);
-            //consulta.execute(sql);
-            
-
+            Statement statement = conexao.createStatement();
+            statement.execute(sql);
         } catch (SQLException ex) {
             System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
         }
 
         sql = "INSERT INTO pessoa(nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, 0);";
         try {
-            consulta = conexao.prepareStatement(sql);
+            PreparedStatement consulta = conexao.prepareStatement(sql);
             consulta.execute();
 
         } catch (SQLException ex) {
