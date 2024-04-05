@@ -117,26 +117,26 @@ public class Painel_clientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-        int selectedRow = jtable_tabela.getSelectedRow();
-        if (selectedRow!=-1) {
-            String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
-            String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
+//        int selectedRow = jtable_tabela.getSelectedRow();
+//        if (selectedRow!=-1) {
+            String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
+            String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
             String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
             
+            System.out.println("ta aqui");
             Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
             JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
             maininterface.getContentPane().remove(this);
             maininterface.add(Janela.p2, BorderLayout.CENTER);
             maininterface.pack();
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
-        }
+            System.out.println("ta lá");
+        
         
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
         String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
-        jtable_tabela.removeAll();
+        
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();

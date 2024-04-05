@@ -62,6 +62,7 @@ public class PedidoDAO {
     }
 
     public PedidoDAO() {
+        this.banco = new BancoDAO();
     }
 
     public int getId() {
