@@ -24,16 +24,15 @@ public class PedidoDAO {
     private BancoDAO banco;
 
     /**
-     *  construtor com id para dados legados
+     * construtor com id para dados legados <br>
+     * e desserializações
      * @param id
      * @param id_cliente
      * @param emissao
      * @param fechamento
      * @param status
      * @param total
-     * @deprecated
      */
-    @Deprecated
     public PedidoDAO(int id, int id_cliente, Date emissao, Date fechamento, char status, double total) {
         this.id = id;
         this.id_cliente = id_cliente;
@@ -45,7 +44,8 @@ public class PedidoDAO {
     }
 
     /**
-     * construtor sem id, condizente com o banco normalizado
+     * construtor sem id, condizente com o banco normalizado <br>
+     * e suas inserções
      * @param id_cliente
      * @param emissao
      * @param fechamento
@@ -121,7 +121,7 @@ public class PedidoDAO {
     }
     
     
-        private boolean salvarPedidoDAOSemID() throws SQLException {
+        public boolean salvarPedidoDAO() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -142,7 +142,7 @@ public class PedidoDAO {
 
         } catch (SQLException ex) {
             resultado = false;
-            System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
+            System.out.println("Erro ao inserir dados de Pedido: " + ex.getMessage());
         }
         return resultado;
     }

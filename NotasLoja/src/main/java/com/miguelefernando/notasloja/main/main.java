@@ -16,8 +16,7 @@ import java.util.logging.Logger;
 public class main {
 
     public static void main(String[] args) {
-        Mock mock = new Mock();
-        mock.DeleteAllPessoa();
-        mock.InserePessoas();
+        new Mock().init();
+        
     }
 }

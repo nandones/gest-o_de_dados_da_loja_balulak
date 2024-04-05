@@ -152,6 +152,7 @@ public class PessoaDAO {
     public boolean SalvarPessoa() {
         if (this.id == 0) {
             try {
+                System.out.println("entrou no sem id");
                 return salvarPessoaSemId();
             } catch (SQLException ex) {
                 Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "erro ao inserir sem informar o id", ex);
