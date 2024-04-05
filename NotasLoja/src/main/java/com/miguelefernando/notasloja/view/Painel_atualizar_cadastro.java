@@ -5,6 +5,12 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import com.miguelefernando.DAO.PessoaDAO;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author User
@@ -32,10 +38,12 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tf_nome = new javax.swing.JTextField();
+        tf_cpf = new javax.swing.JTextField();
+        tf_cidade = new javax.swing.JTextField();
+        cb_uf = new javax.swing.JComboBox<>();
+        bt_recadastrar = new javax.swing.JButton();
+        bt_voltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,33 +68,116 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         jLabel5.setText("Novo UF:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setText("jTextField1");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 360, -1));
+        tf_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(tf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 370, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField2.setText("jTextField2");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 380, -1));
+        tf_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(tf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 390, -1));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField3.setText("jTextField3");
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 350, -1));
+        tf_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(tf_cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 360, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        cb_uf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cb_uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PR", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        add(cb_uf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+
+        bt_recadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        bt_recadastrar.setText("Recadastrar");
+        bt_recadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_recadastrarMouseClicked(evt);
+            }
+        });
+        add(bt_recadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 130, 40));
+
+        bt_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        bt_voltar.setText("Voltar");
+        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_recadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_recadastrarMouseClicked
+        String nome = tf_nome.getText();
+        String cpf = tf_cpf.getText();
+        String cidade = tf_cidade.getText();
+        
+        
+        String uf = (String) cb_uf.getSelectedItem();
+        if (uf == null) {
+            JOptionPane.showMessageDialog(null, "selecione um uf!");
+        } else if(verificarFormatoCPF(cpf)==false){
+            JOptionPane.showMessageDialog(null, "digite um cpf válido!");
+        }else if(nome != null && cpf!=null && cidade !=null){
+            PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
+            
+            Janela.p3 = new Painel_clientes();
+            JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+            maininterface.getContentPane().remove(this);
+            maininterface.add(Janela.p3, BorderLayout.CENTER);
+            maininterface.pack();
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            
+        }else{
+           JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
+        }
+    }//GEN-LAST:event_bt_recadastrarMouseClicked
+
+    
+    public boolean verificarFormatoCPF(String cpf) {
+        // Remove caracteres não numéricos do CPF
+        cpf = cpf.replaceAll("[^0-9]", "");
+        
+        // Verifica se o CPF tem 11 dígitos
+        if (cpf.length() != 11) {
+            return false;
+        }
+        
+        // Verifica se todos os dígitos são iguais, o que é inválido para CPF
+        boolean todosDigitosIguais = true;
+        for (int i = 1; i < cpf.length(); i++) {
+            if (cpf.charAt(i) != cpf.charAt(0)) {
+                todosDigitosIguais = false;
+                break;
+            }
+        }
+        if (todosDigitosIguais) {
+            return false;
+        }
+        
+        // Verifica se o CPF é válido
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * (10 - i);
+        }
+        int resto = soma % 11;
+        int digitoVerificador1 = (resto < 2) ? 0 : (11 - resto);
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * (11 - i);
+        }
+        resto = soma % 11;
+        int digitoVerificador2 = (resto < 2) ? 0 : (11 - resto);
+
+        // Verifica se os dígitos verificadores estão corretos
+        if ((cpf.charAt(9) - '0' != digitoVerificador1) || (cpf.charAt(10) - '0' != digitoVerificador2)) {
+            return false;
+        }
+        
+        // Se chegou até aqui, o CPF é válido
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton bt_recadastrar;
+    private javax.swing.JButton bt_voltar;
+    private javax.swing.JComboBox<String> cb_uf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField tf_cidade;
+    private javax.swing.JTextField tf_cpf;
+    private javax.swing.JTextField tf_nome;
     // End of variables declaration//GEN-END:variables
 }
