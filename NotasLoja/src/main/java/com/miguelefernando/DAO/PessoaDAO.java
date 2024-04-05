@@ -196,6 +196,29 @@ public class PessoaDAO {
         return lista;
     }
 
+    public boolean excluir() {
+        Connection conexao = this.banco.getConexao();
+        
+        String sql = "DELETE FROM pessoa WHERE id = ?";
+        PreparedStatement consulta;
+        boolean excluido = false;
+        
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, this.id);
+            int linhasExcluidas = consulta.executeUpdate();
+            if (linhasExcluidas > 0) {
+                excluido = true;
+            }
+        } catch (SQLException ex) {
+            excluido = false;
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "nao fora excluido nenhum registro", ex);
+        }
+    
+    return excluido;
+    }
+
     public int getId() {
         return id;
     }
