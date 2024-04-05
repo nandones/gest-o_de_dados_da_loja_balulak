@@ -118,18 +118,13 @@ public class Painel_cadastro extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "digite um cpf válido!");
         }else if(nome != null && cpf!=null && cidade !=null){
             PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
-            try {
-                pessoa.salvarPessoaSemId();
-                Janela.p3 = new Painel_clientes();
-                JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-                maininterface.getContentPane().remove(this);
-                maininterface.add(Janela.p3, BorderLayout.CENTER);
-                maininterface.pack();
+            pessoa.SalvarPessoa(); //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            Janela.p3 = new Painel_clientes();
+            JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+            maininterface.getContentPane().remove(this);
+            maininterface.add(Janela.p3, BorderLayout.CENTER);
+            maininterface.pack();
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            } catch (SQLException ex) {
-                //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
-            }
             
         }else{
            JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
