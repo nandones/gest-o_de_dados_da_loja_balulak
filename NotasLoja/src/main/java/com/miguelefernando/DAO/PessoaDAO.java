@@ -42,16 +42,16 @@ public class PessoaDAO {
     }
 
     /**
-     * Construtor com ID para registros pré-existentes
+     * Construtor com ID para registros pré-existentes <br>
+     * e para a desserialização das tuplas do MySQL
      *
      * @param id_cliente
      * @param nome
      * @param cidade
      * @param uf
      * @param cpf
-     * @deprecated não implementado ainda
      */
-    @Deprecated
+    
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
         this.id = id_cliente;
         this.nome = nome;
@@ -118,62 +118,6 @@ public class PessoaDAO {
         return resultado;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public BancoDAO getBanco() {
-        return banco;
-    }
-
-    public void setBanco(BancoDAO banco) {
-        this.banco = banco;
-    }
-
-    public int getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(int admin) {
-        this.admin = admin;
-    }
-
     /**
      * Salva uma pessoa no bdd como admin = 0
      *
@@ -231,6 +175,62 @@ public class PessoaDAO {
             System.out.println("ERRO NA LEITURA DE DADOS DO BD: " + ex.getMessage());
         }
         return lista;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public BancoDAO getBanco() {
+        return banco;
+    }
+
+    public void setBanco(BancoDAO banco) {
+        this.banco = banco;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
     }
 
 }
