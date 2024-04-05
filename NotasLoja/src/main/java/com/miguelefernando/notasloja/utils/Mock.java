@@ -27,7 +27,8 @@ public class Mock {
         Connection conexao = banco.getConexao();
 
         String sql
-                = "DELETE FROM pessoa;"
+                = "SET SQL_SAFE_UPDATES = 0;"
+                + "DELETE FROM pessoa;"
                 + "DELETE FROM produto;"
                 + "DELETE FROM produtopedido;"
                 + "DELETE FROM pedido_produto;";
