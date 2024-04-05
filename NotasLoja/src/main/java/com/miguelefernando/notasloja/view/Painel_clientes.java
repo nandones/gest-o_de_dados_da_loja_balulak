@@ -51,6 +51,7 @@ public class Painel_clientes extends javax.swing.JPanel {
         jRadioButton1 = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
+        setPreferredSize(new java.awt.Dimension(700, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbutton_visualizarCliente.setText("Visualizar Cliente");
@@ -59,7 +60,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_visualizarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 190, 51));
+        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 190, 51));
 
         jbutton_procurarCliente.setText("Procurar cliente");
         jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,7 +68,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_procurarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 190, 51));
+        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 190, 51));
 
         jbutton_CadastrarCliente.setText("Cadastrar Cliente");
         jbutton_CadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,7 +76,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_CadastrarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 190, 51));
+        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 190, 51));
 
         jbutton_deletar_cliente1.setText("Deletar Cliente");
         jbutton_deletar_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,11 +84,11 @@ public class Painel_clientes extends javax.swing.JPanel {
                 jbutton_deletar_cliente1MouseClicked(evt);
             }
         });
-        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 190, 51));
+        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 190, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setText("BALULAK");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
         jtable_tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,7 +128,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 bt_voltarActionPerformed(evt);
             }
         });
-        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 190, 50));
+        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 190, 50));
 
         bt_atualizarCadastro.setText("Atualizar Cadastro");
         bt_atualizarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,7 +136,7 @@ public class Painel_clientes extends javax.swing.JPanel {
                 bt_atualizarCadastroMouseClicked(evt);
             }
         });
-        add(bt_atualizarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 190, 50));
+        add(bt_atualizarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 190, 50));
 
         jRadioButton1.setText("mock");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
