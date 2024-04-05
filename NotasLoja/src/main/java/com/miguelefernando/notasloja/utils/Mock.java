@@ -130,11 +130,11 @@ public class Mock {
     public void InserePessoas() {
         Connection conexao = new BancoDAO().getConexao();
 
-        PessoaDAO p1 = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
-        PessoaDAO p2 = new PessoaDAO("MONARK", "eua", "ac", "000.000.000-01");
-        PessoaDAO p3 = new PessoaDAO("NANDO MOURA", "sp", "sp", "000.000.000-02");
-        PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "sc", "000.000.000-03");
-        PessoaDAO p5 = new PessoaDAO("ADAM SANDVER", "eua", "pr", "000.000.000-04");
+        PessoaDAO p1 = new PessoaDAO("WILLEN", "LAGES", "SC", "000.000.000-00");
+        PessoaDAO p2 = new PessoaDAO("MONARK", "EUA", "AC", "000.000.000-01");
+        PessoaDAO p3 = new PessoaDAO("NEWMAN", "ASGAARD", "SP", "000.000.000-02");
+        PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "SC", "000.000.000-03");
+        PessoaDAO p5 = new PessoaDAO("ADAM SANDVER", "EUA", "PR", "000.000.000-04");
         System.out.println(p1.SalvarPessoa());
         System.out.println(p2.SalvarPessoa());
         System.out.println(p3.SalvarPessoa());
@@ -146,11 +146,11 @@ public class Mock {
     public void InsereProdutos() {
         Connection conexao = new BancoDAO().getConexao();
 
-        ProdutoDAO p1 = new ProdutoDAO(40.0, "regata blindada", 'u');
-        ProdutoDAO p2 = new ProdutoDAO(37.0, "saia", 'f');
-        ProdutoDAO p3 = new ProdutoDAO(200.0, "camiseta insider", 'm');
-        ProdutoDAO p4 = new ProdutoDAO(40.0, "camiseta insider", 'f');
-        ProdutoDAO p5 = new ProdutoDAO(40.0, "corta vento", 'u');
+        ProdutoDAO p1 = new ProdutoDAO(40.0, "REGATA BLINDADA", 'U');
+        ProdutoDAO p2 = new ProdutoDAO(37.0, "SAIA", 'F');
+        ProdutoDAO p3 = new ProdutoDAO(200.0, "CAMISETA INSIDER", 'M');
+        ProdutoDAO p4 = new ProdutoDAO(40.0, "CAMISETA INSIDER", 'F');
+        ProdutoDAO p5 = new ProdutoDAO(40.0, "CORTA VENTO", 'U');
 
         try {
             System.out.println(p1.salvarProduto());
