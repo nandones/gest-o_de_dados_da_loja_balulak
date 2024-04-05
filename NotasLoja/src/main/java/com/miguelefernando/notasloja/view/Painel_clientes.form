@@ -132,5 +132,18 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="bt_atualizarCadastro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atualizar Cadastro"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_atualizarCadastroMouseClicked"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="330" width="190" height="50"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>

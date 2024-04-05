@@ -44,6 +44,7 @@ public class Painel_clientes extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable_tabela = new javax.swing.JTable();
+        bt_atualizarCadastro = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,6 +106,14 @@ public class Painel_clientes extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jtable_tabela);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 430));
+
+        bt_atualizarCadastro.setText("Atualizar Cadastro");
+        bt_atualizarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_atualizarCadastroMouseClicked(evt);
+            }
+        });
+        add(bt_atualizarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 190, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
@@ -126,16 +135,41 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
-        // TODO add your handling code here:
+        String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
+        jtable_tabela.removeAll();
+        PessoaDAO pessoa = new PessoaDAO();
+        ArrayList<PessoaDAO> listaPessoa;
+        listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
+        DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
+        for(int i = 0; i < listaPessoa.size(); i++ ){
+            String nomeCliente = String.valueOf(listaPessoa.get(i).getNome());
+            String id = String.valueOf(listaPessoa.get(i).getId());
+            if(nomeCliente.equals(textoDigitado)){
+            String [] linha = {
+                id,
+                listaPessoa.get(i).getNome(),
+                listaPessoa.get(i).getCpf()
+            };
+            
+            modelo.addRow(linha);
+            }
+        }
+        jtable_tabela.changeSelection(0, 0, false, false);
+    
+        
     }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
 
     private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
-       Janela.p4 = new Painel_cadastro();
+        Janela.p4 = new Painel_cadastro();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p4, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
+
+    private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
+        
+    }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
 
     public void abrirTabela(){
         PessoaDAO pessoa = new PessoaDAO();
@@ -156,6 +190,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_atualizarCadastro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbutton_CadastrarCliente;
