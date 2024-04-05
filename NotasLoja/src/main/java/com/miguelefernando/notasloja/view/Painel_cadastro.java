@@ -141,7 +141,11 @@ public class Painel_cadastro extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_cadastrarMouseClicked
 
     private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
-        
+        Janela.p3 = new Painel_clientes();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.pack();
     }//GEN-LAST:event_jbutton_voltarMouseClicked
 
     
