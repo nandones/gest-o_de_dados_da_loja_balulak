@@ -251,6 +251,29 @@ public class PessoaDAO {
         return objeto;
     }
 
+    public boolean update() {
+        Connection conexao = this.banco.getConexao();
+
+        String sql = "UPDATE pessoa SET nome = ?, cidade = ?, uf = ?, CPF = ?";
+        PreparedStatement consulta;
+        boolean atualizado = false;//
+
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setString(1, this.nome);
+            consulta.setString(2, this.cidade);
+            consulta.setString(3, this.uf);
+            consulta.setString(4, this.cpf);
+            int linhasAtualizadas = consulta.executeUpdate();
+            if (linhasAtualizadas > 0) {
+                atualizado = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return atualizado;
+    }
+
     public int getId() {
         return id;
     }
