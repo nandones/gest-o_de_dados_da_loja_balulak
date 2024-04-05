@@ -130,7 +130,7 @@ public class Mock {
     public void InserePessoas() {
         Connection conexao = new BancoDAO().getConexao();
 
-        PessoaDAO p1 = new PessoaDAO("WILLEN", "LAGES", "SC", "000.000.000-00");
+        PessoaDAO p1 = new PessoaDAO("WILLEN", "LAGES", "SC", "112.092.608-40");
         PessoaDAO p2 = new PessoaDAO("MONARK", "EUA", "AC", "000.000.000-01");
         PessoaDAO p3 = new PessoaDAO("NEWMAN", "ASGAARD", "SP", "000.000.000-02");
         PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "SC", "000.000.000-03");
