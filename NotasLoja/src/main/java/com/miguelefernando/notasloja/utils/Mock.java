@@ -35,8 +35,10 @@ public class Mock {
         PreparedStatement consulta;
 
         try {
-            consulta = conexao.prepareStatement(sql);
-            consulta.execute();
+            //consulta = conexao.prepareStatement(sql);
+            consulta = (PreparedStatement) conexao.createStatement().executeQuery(sql);
+            //consulta.execute(sql);
+            
 
         } catch (SQLException ex) {
             System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
