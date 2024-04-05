@@ -198,12 +198,11 @@ public class PessoaDAO {
 
     public boolean excluir() {
         Connection conexao = this.banco.getConexao();
-        
+
         String sql = "DELETE FROM pessoa WHERE id = ?";
         PreparedStatement consulta;
         boolean excluido = false;
-        
-        
+
         try {
             consulta = conexao.prepareStatement(sql);
             consulta.setInt(1, this.id);
@@ -215,8 +214,38 @@ public class PessoaDAO {
             excluido = false;
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "nao fora excluido nenhum registro", ex);
         }
-    
-    return excluido;
+
+        return excluido;
+    }
+
+    public PessoaDAO getPessoa(int codigo) {
+        Connection conexao = this.banco.getConexao();
+
+        String sql = "DELETE FROM pessoa WHERE id = ?";
+        PreparedStatement consulta;
+        ResultSet resultado;
+
+        PessoaDAO objeto = null;
+
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, codigo);
+            resultado = consulta.executeQuery();
+
+            if (resultado.next()) {
+
+                int id = resultado.getInt("id");
+                String nome = resultado.getString("nome");
+                String cidade = resultado.getString("cidade");
+                String uf = resultado.getString("uf");
+                String cpf = resultado.getString("CPF");
+                int admin = Integer.parseInt(resultado.getString("admin"));
+                objeto = new PessoaDAO(id, nome, cidade, uf, cpf);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return objeto;
     }
 
     public int getId() {
