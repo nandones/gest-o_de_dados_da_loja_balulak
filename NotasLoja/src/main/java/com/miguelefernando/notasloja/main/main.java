@@ -17,6 +17,7 @@ public class main {
 
     public static void main(String[] args) {
         Mock mock = new Mock();
-        mock.main(args);
+        mock.DeleteAllPessoa();
+        mock.InserePessoas();
     }
 }

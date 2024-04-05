@@ -24,47 +24,9 @@ public class Mock {
 
     public static void main(String[] args) {
 
-        BancoDAO banco = new BancoDAO();
-        Connection conexao = banco.getConexao();
+        Connection conexao = new BancoDAO().getConexao();
 
-        String sql = "SET SQL_SAFE_UPDATES = 0; "
-                + "DELETE FROM pessoa WHERE nome IS NOT NULL; "
-                + "DELETE FROM produto WHERE nome IS NOT NULL; "
-                + "DELETE FROM produtopedido WHERE id_pedido IS NOT NULL; "
-                + "DELETE FROM pedido_produto WHERE id IS NOT NULL;";
-
-        try {
-            Statement statement = conexao.createStatement();
-            statement.execute(sql);
-        } catch (SQLException ex) {
-            System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
-        }
-
-        sql = "INSERT INTO pessoa(nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, 0);";
-        try {
-            PreparedStatement consulta = conexao.prepareStatement(sql);
-            consulta.execute();
-
-        } catch (SQLException ex) {
-            System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
-        }
-        PessoaDAO p1 = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
-        PessoaDAO p2 = new PessoaDAO("MONARK", "eua", "ac", "000.000.000-01");
-        PessoaDAO p3 = new PessoaDAO("NANDO MOURA", "sp", "sp", "000.000.000-02");
-        PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "sc", "000.000.000-03");
-        PessoaDAO p5 = new PessoaDAO("ADAM SANDVER", "eua", "pr", "000.000.000-04");
-        try {
-
-            System.out.println(p1.salvarPessoaSemId());
-            System.out.println(p2.salvarPessoaSemId());
-            System.out.println(p3.salvarPessoaSemId());
-            System.out.println(p4.salvarPessoaSemId());
-            System.out.println(p5.salvarPessoaSemId());
-
-        } catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
         ProdutoDAO pr1 = new ProdutoDAO(20.0, "camisa you ken do ramon", 'r');
         ProdutoDAO pr2 = new ProdutoDAO(20.0, "moletom verde do luisao", 'p');
         try {
@@ -95,5 +57,71 @@ public class Mock {
         } catch (SQLException ex) {
             System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
         }
+    }
+    
+    public void DeleteAllProduto() {
+        BancoDAO banco = new BancoDAO();
+        Connection conexao = banco.getConexao();
+
+        String sql = "DELETE FROM pessoa WHERE nome IS NOT NULL; ";
+
+        try {
+            Statement statement = conexao.createStatement();
+            statement.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
+        }
+    }
+    
+    public void DeleteAllPedido() {
+        BancoDAO banco = new BancoDAO();
+        Connection conexao = banco.getConexao();
+
+        String sql = "DELETE FROM pedido WHERE id IS NOT NULL; ";
+
+        try {
+            Statement statement = conexao.createStatement();
+            statement.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
+        }
+    }
+    
+    public void DeleteAllPedido_produto() {
+        BancoDAO banco = new BancoDAO();
+        Connection conexao = banco.getConexao();
+
+        String sql = "DELETE FROM pedido_produto WHERE id_pedido IS NOT NULL; ";
+
+        try {
+            Statement statement = conexao.createStatement();
+            statement.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println("Erro ao deletar todos os dados do bdd: " + ex.getMessage());
+        }
+    }
+    
+    public void InserePessoas(){
+        Connection conexao = new BancoDAO().getConexao();
+
+        String sql = "INSERT INTO pessoa(nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, 0);";
+        try {
+            PreparedStatement consulta = conexao.prepareStatement(sql);
+            consulta.execute();
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
+        }
+        PessoaDAO p1 = new PessoaDAO("willen", "lages", "sc", "000.000.000-00");
+        PessoaDAO p2 = new PessoaDAO("MONARK", "eua", "ac", "000.000.000-01");
+        PessoaDAO p3 = new PessoaDAO("NANDO MOURA", "sp", "sp", "000.000.000-02");
+        PessoaDAO p4 = new PessoaDAO("NATHAN FISHERMAN", "balneario", "sc", "000.000.000-03");
+        PessoaDAO p5 = new PessoaDAO("ADAM SANDVER", "eua", "pr", "000.000.000-04");
+        System.out.println(p1.SalvarPessoa());
+        System.out.println(p2.SalvarPessoa());
+        System.out.println(p3.SalvarPessoa());
+        System.out.println(p4.SalvarPessoa());
+        System.out.println(p5.SalvarPessoa());
+        
     }
 }

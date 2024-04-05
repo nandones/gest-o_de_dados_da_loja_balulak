@@ -51,7 +51,6 @@ public class PessoaDAO {
      * @param uf
      * @param cpf
      */
-    
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
         this.id = id_cliente;
         this.nome = nome;
@@ -63,7 +62,8 @@ public class PessoaDAO {
     }
 
     /**
-     * Construtor sem ID para novos registros
+     * Construtor sem ID para novos registros <br>
+     * utilizado para serializar
      *
      * @param nome
      * @param cidade
@@ -91,7 +91,7 @@ public class PessoaDAO {
      * // TODO: Implementar o método salvarClienteComId()
      */
     @Deprecated
-    public boolean salvarPessoaComId() throws SQLException {
+    private boolean salvarPessoaComId() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -124,7 +124,7 @@ public class PessoaDAO {
      * @return boolean confirmação do insert
      * @throws SQLException
      */
-    public boolean salvarPessoaSemId() throws SQLException {
+    private boolean salvarPessoaSemId() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado = false;
 
@@ -147,6 +147,24 @@ public class PessoaDAO {
             System.out.println("Erro ao inserir dados de Pessoa: " + ex.getMessage());
         }
         return resultado;
+    }
+
+    public boolean SalvarPessoa() {
+        if (this.id == 0) {
+            try {
+                return salvarPessoaSemId();
+            } catch (SQLException ex) {
+                Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "erro ao inserir sem informar o id", ex);
+            }
+        }
+        if (this.id != 0) {
+            try {
+                return salvarPessoaComId();
+            } catch (SQLException ex) {
+                Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "erro ao inserir informando o id", ex);
+            }
+        }
+        return false;
     }
 
     public ArrayList<PessoaDAO> listarPessoasDAO() {
