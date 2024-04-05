@@ -186,7 +186,7 @@ public class PessoaDAO {
                 String uf = resultados.getString("uf");
                 String cpf = resultados.getString("CPF");
                 int admin = Integer.parseInt(resultados.getString("admin"));
-                objeto = new PessoaDAO(admin, nome, cidade, uf, cpf);
+                objeto = new PessoaDAO(id, nome, cidade, uf, cpf);
                 lista.add(objeto);
             }
         } catch (SQLException ex) {
