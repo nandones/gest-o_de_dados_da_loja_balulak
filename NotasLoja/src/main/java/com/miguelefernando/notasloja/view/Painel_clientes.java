@@ -38,7 +38,6 @@ public class Painel_clientes extends javax.swing.JPanel {
     private void initComponents() {
 
         jbutton_visualizarCliente = new javax.swing.JButton();
-        jbutton_voltar = new javax.swing.JButton();
         jbutton_procurarCliente = new javax.swing.JButton();
         jbutton_CadastrarCliente = new javax.swing.JButton();
         jbutton_deletar_cliente1 = new javax.swing.JButton();
@@ -56,15 +55,6 @@ public class Painel_clientes extends javax.swing.JPanel {
             }
         });
         add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 190, 51));
-
-        jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
-        jbutton_voltar.setText("Voltar");
-        jbutton_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_voltarMouseClicked(evt);
-            }
-        });
-        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 193, 51));
 
         jbutton_procurarCliente.setText("Procurar cliente");
         jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,14 +125,6 @@ public class Painel_clientes extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
-    private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
-        Janela.pl = new Painel_menu();
-        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-        maininterface.getContentPane().remove(this);
-        maininterface.add(Janela.pl, BorderLayout.CENTER);
-        maininterface.pack();
-    }//GEN-LAST:event_jbutton_voltarMouseClicked
-
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
@@ -180,7 +162,6 @@ public class Painel_clientes extends javax.swing.JPanel {
     private javax.swing.JButton jbutton_deletar_cliente1;
     private javax.swing.JButton jbutton_procurarCliente;
     private javax.swing.JButton jbutton_visualizarCliente;
-    private javax.swing.JButton jbutton_voltar;
     private javax.swing.JTable jtable_tabela;
     // End of variables declaration//GEN-END:variables
 }

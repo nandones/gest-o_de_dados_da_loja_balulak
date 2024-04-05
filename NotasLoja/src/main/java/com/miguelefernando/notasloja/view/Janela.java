@@ -13,7 +13,7 @@ import java.awt.BorderLayout;
 public class Janela extends javax.swing.JFrame {
 
     
-    static Painel_menu pl;
+    
     static Painel_PerfilCliente p2;
     static Painel_clientes p3;
     static Painel_cadastro p4;
@@ -25,9 +25,9 @@ public class Janela extends javax.swing.JFrame {
         initComponents();
         this.setLayout(new BorderLayout());
         
-        pl = new Painel_menu();
+        p3 = new Painel_clientes();
         
-        this.add(pl, BorderLayout.CENTER);
+        this.add(p3, BorderLayout.CENTER);
         this.pack();
     }
 

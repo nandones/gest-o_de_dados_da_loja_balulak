@@ -131,16 +131,24 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
 
     private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        String id = (String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0);
-        int selectedRow = jt_tabela.getSelectedRow();
-        PedidoDAO pedido = new PedidoDAO();
-        ArrayList<PedidoDAO> listaPedido;
-        listaPedido = (ArrayList<PedidoDAO>) pedido.listarPedidosDAO();
-        DefaultTableModel modelo = (DefaultTableModel) this.jt_tabela.getModel();
-        
-        
-            
-        
+//        String id = lb_id.getText();
+//        int selectedRow = jt_tabela.getSelectedRow();
+//        PedidoDAO pedido = new PedidoDAO();
+//        ArrayList<PedidoDAO> listaPedido;
+//        ArrayList<ProdutoDAO> listaProduto;
+//        listaPedido = (ArrayList<PedidoDAO>) pedido.listarPedidosDAO();
+//        DefaultTableModel modelo = (DefaultTableModel) this.jt_tabela.getModel();
+//        for(int i = 0; i < listaPedido.size();i++){
+//            String idCliente = String.valueOf(listaPedido.get(i).getId_cliente());
+//            if(idCliente.equals(id)){
+//            }
+//        }
+
+            int selectedRow = jt_tabela.getSelectedRow();
+            if (selectedRow!=-1) {
+                String idPedido = (String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0);
+                
+            }
         }
     }//GEN-LAST:event_jt_tabelaKeyReleased
 
