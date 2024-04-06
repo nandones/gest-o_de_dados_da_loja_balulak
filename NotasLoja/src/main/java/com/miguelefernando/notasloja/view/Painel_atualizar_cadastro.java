@@ -11,17 +11,32 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+
 /**
  *
  * @author User
  */
 public class Painel_atualizar_cadastro extends javax.swing.JPanel {
 
+     int id_pessoa;
     /**
      * Creates new form Painel_atualizar_cadastro
      */
-    public Painel_atualizar_cadastro() {
+    public Painel_atualizar_cadastro(int id) {
         initComponents();
+        
+        id_pessoa = id;
+        PessoaDAO pessoa = new PessoaDAO();
+        pessoa = pessoa.getPessoa(id);
+        String nome = pessoa.getNome();
+        String cpf = pessoa.getCpf();
+        String cidade = pessoa.getCidade();
+        String uf = pessoa.getUf();
+        setarTF(nome, cpf, cidade, uf);
+        
+        pessoa.update();
+        
+        
     }
 
     /**
@@ -46,6 +61,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         bt_voltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
+        setPreferredSize(new java.awt.Dimension(536, 470));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -72,6 +88,11 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         add(tf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 370, -1));
 
         tf_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_cpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tf_cpfKeyTyped(evt);
+            }
+        });
         add(tf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 390, -1));
 
         tf_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -92,6 +113,11 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
 
         bt_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bt_voltar.setText("Voltar");
+        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_voltarMouseClicked(evt);
+            }
+        });
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,15 +125,24 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         String nome = tf_nome.getText();
         String cpf = tf_cpf.getText();
         String cidade = tf_cidade.getText();
-        
-        
         String uf = (String) cb_uf.getSelectedItem();
+        
+        nome = nome.toUpperCase();
+        cidade = cidade.toUpperCase();
         if (uf == null) {
             JOptionPane.showMessageDialog(null, "selecione um uf!");
         } else if(verificarFormatoCPF(cpf)==false){
             JOptionPane.showMessageDialog(null, "digite um cpf válido!");
         }else if(nome != null && cpf!=null && cidade !=null){
-            PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
+            cpf = formatarCPF(cpf);
+            PessoaDAO pessoa = new PessoaDAO();
+            pessoa = pessoa.getPessoa(id_pessoa);
+            pessoa.setCpf(cpf);
+            pessoa.setNome(nome);
+            pessoa.setCidade(cidade);
+            pessoa.setUf(uf);
+            pessoa.update();
+            
             
             Janela.p3 = new Painel_clientes();
             JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -120,6 +155,18 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
         }
     }//GEN-LAST:event_bt_recadastrarMouseClicked
+
+    private void tf_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cpfKeyTyped
+        formatacaoCPF(evt);
+    }//GEN-LAST:event_tf_cpfKeyTyped
+
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
+        Janela.p3 = new Painel_clientes();
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p3, BorderLayout.CENTER);
+        maininterface.pack();
+    }//GEN-LAST:event_bt_voltarMouseClicked
 
     
     public boolean verificarFormatoCPF(String cpf) {
@@ -165,6 +212,33 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         
         // Se chegou até aqui, o CPF é válido
         return true;
+    }
+    
+    public void setarTF(String nome, String cpf, String cidade, String uf){
+        tf_nome.setText(nome);
+        tf_cidade.setText(cidade);
+        tf_cpf.setText(cpf);
+        cb_uf.setSelectedItem(uf);
+   
+    }
+    
+    public static String formatarCPF(String cpf) {
+        if (cpf == null || cpf.length() != 11) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+
+        // Formatar o CPF com pontos e hífen
+        return cpf.substring(0, 3) + "." +
+               cpf.substring(3, 6) + "." +
+               cpf.substring(6, 9) + "-" +
+               cpf.substring(9);
+    }
+    
+    public void formatacaoCPF(java.awt.event.KeyEvent evt){
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

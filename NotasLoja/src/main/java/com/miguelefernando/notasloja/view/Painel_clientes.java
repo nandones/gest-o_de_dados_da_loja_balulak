@@ -118,11 +118,6 @@ public class Painel_clientes extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 410));
 
         bt_voltar.setText("Voltar");
-        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_voltarMouseClicked(evt);
-            }
-        });
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_voltarActionPerformed(evt);
@@ -166,7 +161,7 @@ public class Painel_clientes extends javax.swing.JPanel {
 
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
         String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
-        
+        textoDigitado = textoDigitado.toUpperCase();
 
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
@@ -203,6 +198,14 @@ public class Painel_clientes extends javax.swing.JPanel {
 
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
         
+        int id = Integer.valueOf((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
+
+        
+        Janela.p5 = new Painel_atualizar_cadastro(id);
+        JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+        maininterface.getContentPane().remove(this);
+        maininterface.add(Janela.p5, BorderLayout.CENTER);
+        maininterface.pack();
         
     }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
 
@@ -212,10 +215,6 @@ public class Painel_clientes extends javax.swing.JPanel {
         
         abrirTabela();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bt_voltarMouseClicked
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
         bt_voltar.setVisible(false);
@@ -257,6 +256,8 @@ public class Painel_clientes extends javax.swing.JPanel {
         }
         jtable_tabela.changeSelection(0, 0, false, false);
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_atualizarCadastro;
