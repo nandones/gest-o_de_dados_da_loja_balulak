@@ -18,11 +18,10 @@ import java.util.logging.Logger;
 public class main {
 
     public static void main(String[] args) {
-//        Janela mi = new Janela();
-//        mi.setVisible(true);
-//        mi.setLocationRelativeTo(null);
+        Janela mi = new Janela();
+        mi.setVisible(true);
+        mi.setLocationRelativeTo(null);
 
-        ConsultaJoinPedidoEPedido_Produto ppp = new ConsultaJoinPedidoEPedido_Produto(1);
-        ppp.listarJoin();
+        
     }
 }

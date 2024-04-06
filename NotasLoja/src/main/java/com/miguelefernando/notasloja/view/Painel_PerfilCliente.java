@@ -5,6 +5,7 @@
  */
 package com.miguelefernando.notasloja.view;
 
+import com.miguelefernando.DAO.ConsultaJoinPedidoEPedido_Produto;
 import com.miguelefernando.DAO.PedidoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
@@ -130,7 +131,19 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_voltarMouseClicked
 
     private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased
+        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int id = Integer.parseInt((String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0));
+            ConsultaJoinPedidoEPedido_Produto c = new ConsultaJoinPedidoEPedido_Produto(id);
+            ArrayList<ConsultaJoinPedidoEPedido_Produto> lista = c.listarJoin();
+            String notaFiscal = "";
+            for (int i = 0; i < lista.size(); i++) {
+                notaFiscal += (lista.get(i).getNome() + " ----- qtd: " + lista.get(i).getQuantidade() + " ------- preço unitario: " + lista.get(i).getPreco() + " ------- preço somado: " + lista.get(i).getPreco() * lista.get(i).getQuantidade()+"\n");
+                
+
+            }
+        JOptionPane.showMessageDialog(null, notaFiscal, "id pedido : "+id, JOptionPane.PLAIN_MESSAGE);
+                
             
         }
     }//GEN-LAST:event_jt_tabelaKeyReleased
