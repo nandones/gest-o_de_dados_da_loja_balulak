@@ -127,12 +127,10 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         /**
         * Atualiza as informações que o usuário decidir reescrever.
         */
-        
         String nome = tf_nome.getText();
         String cpf = tf_cpf.getText();
         String cidade = tf_cidade.getText();
         String uf = (String) cb_uf.getSelectedItem();
-        
         nome = nome.toUpperCase();
         cidade = cidade.toUpperCase();
         if (uf == null) {
@@ -148,32 +146,28 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
             pessoa.setCidade(cidade);
             pessoa.setUf(uf);
             pessoa.update();
-            
-            
             Janela.p3 = new Painel_clientes();
             JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
             maininterface.getContentPane().remove(this);
             maininterface.add(Janela.p3, BorderLayout.CENTER);
             maininterface.pack();
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");          
         }else{
            JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
         }
     }//GEN-LAST:event_bt_recadastrarMouseClicked
 
     private void tf_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cpfKeyTyped
-        
         /**
-    * chama o método formatacaoCPF.
-    */formatacaoCPF(evt);
+        * chama o método formatacaoCPF.
+        */
+        formatacaoCPF(evt);
     }//GEN-LAST:event_tf_cpfKeyTyped
 
     private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
         /**
         * Volta para o painel clientes
         */
-        
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -184,8 +178,8 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     /**
     * Realiza a verificação se o cpf inserido é válido.
     * @param cpf
-    */
-    
+    * @return boolean verificação do cpf
+    */ 
     public boolean verificarFormatoCPF(String cpf) {
         // Remove caracteres não numéricos do CPF
         cpf = cpf.replaceAll("[^0-9]", "");
@@ -238,7 +232,6 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * @param cidade
     * @param uf
     */
-    
     public void setarTF(String nome, String cpf, String cidade, String uf){
         tf_nome.setText(nome);
         tf_cidade.setText(cidade);
@@ -250,8 +243,8 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     /**
      * Realiza a formatação do cpf (###.###.###-##).
     * @param cpf
-    */
-    
+    * @return String cpfFormatado
+    */  
     public static String formatarCPF(String cpf) {
         if (cpf == null || cpf.length() != 11) {
             throw new IllegalArgumentException("CPF inválido");
@@ -263,6 +256,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
                cpf.substring(6, 9) + "-" +
                cpf.substring(9);
     }
+    
     /**
     * Impede a digitação de digitos que não sejam números para evitar erros na verificação de cpf
     * @param evt

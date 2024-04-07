@@ -18,14 +18,22 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author User
+ *Nesse painel é possível visualizar todos os <br>
+ * pedidos do cliente selecionado anteriormente <br>
+ * no menu, e abrir, o pedido, mostrando todas <br>
+ * as informações do mesmo.
+ * @author Miguel
+ * @since 04/24
+ * @version 1.0
  */
 public class Painel_PerfilCliente extends javax.swing.JPanel {
 
     /**
-     * Creates new form Painel_PerfilCliente
-     */
+    * Creates new form Painel_PerfilCliente
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     public Painel_PerfilCliente(String nome, String id, String cpf) {
         initComponents();
         setLabels(nome, id, cpf);
@@ -117,33 +125,41 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         });
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * JOptionPane versão indisponível
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     private void bt_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_relatorioMouseClicked
-        /**
-        * JOptionPane
-        *
-        */
         JOptionPane.showMessageDialog(null, "Indisponível nessa versão!");
     }//GEN-LAST:event_bt_relatorioMouseClicked
-
+    /**
+    * Volta para o painel Cliente
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
-        /**
-     * Volta para o painel Cliente
-     */
-        
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p3, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_bt_voltarMouseClicked
-
+    /**
+    * Entrada no Pedido, onde será mostardo as <br>
+    * informações do pedido assim que clicado <br>
+    * no enter, será aberto o pedido selecionado
+    * @param evt java.awt.event.KeyEvent
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+   */
     private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased
-        /**
-        * Entrada no Pedido, onde será mostardo as <br>
-        * informações do pedido assim que clicado <br>
-        * no enter, será aberto o pedido selecionado
-        */
+        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int id = Integer.parseInt((String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0));
             ConsultaJoinPedidoEPedido_Produto c = new ConsultaJoinPedidoEPedido_Produto(id);
@@ -161,9 +177,12 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jt_tabelaKeyReleased
     /**
     * Método para inserir os dados do cliente em suas respectivas labels
-    * @param nome
-    * @param id
-    * @param cpf
+    * @param nome String 
+    * @param id String
+    * @param cpf String
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
     */
     public void setLabels(String nome, String id, String cpf){
         lb_nome.setText(nome);
@@ -174,7 +193,10 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     * Método para inserir os dados do pedido no jtable<br>
     * usando o id para pegar somente os dados do cliente<br>
     * selecionado
-    * @param id
+    * @param id String
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
     */
     public void setTabela(String id){
         

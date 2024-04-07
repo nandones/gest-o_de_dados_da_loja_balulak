@@ -40,8 +40,8 @@
     </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>22</maven.compiler.source><!-- ESSE NÚMERO DEVE CONDIZER COM: Tools> Java Platforms> JDK number -->
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source><!-- ESSE NÚMERO DEVE CONDIZER COM: Tools> Java Platforms> JDK number -->
+        <maven.compiler.target>15</maven.compiler.target>
         <exec.mainClass>com.nandones.notasloja.NotasLoja</exec.mainClass>
     </properties>
 </project>

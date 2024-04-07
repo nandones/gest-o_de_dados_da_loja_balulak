@@ -111,7 +111,6 @@ public class Painel_cadastro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_cadastrarMouseClicked
-        
     /**
     * Método para inserir os dados do cliente em suas respectivas labels
     */
@@ -128,27 +127,23 @@ public class Painel_cadastro extends javax.swing.JPanel {
         jtext_cpf.setText("");
             }else if(nome != null && cpf!=null && cidade !=null){
                 cpf = formatarCPF(cpf);
-           
                 PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
-            
                 pessoa.SalvarPessoa(); //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
                 Janela.p3 = new Painel_clientes();
                 JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
                 maininterface.getContentPane().remove(this);
                 maininterface.add(Janela.p3, BorderLayout.CENTER);
                 maininterface.pack();
-                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!"); 
             }else{
                 JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
             }
-  
     }//GEN-LAST:event_jbutton_cadastrarMouseClicked
 
     private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
         /**
-    * Volta para o painel clientes
-    */
+        * Volta para o painel clientes
+        */
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -159,7 +154,6 @@ public class Painel_cadastro extends javax.swing.JPanel {
     private void jtext_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtext_cpfKeyTyped
         /**
         * chama o método formatacaoCPF.
-
         */
         formatacaoCPF(evt);
     }//GEN-LAST:event_jtext_cpfKeyTyped
@@ -232,7 +226,6 @@ public class Painel_cadastro extends javax.swing.JPanel {
     * Impede a digitação de digitos que não sejam números para evitar erros na verificação de cpf
     * @param evt
     */
-    
     public void formatacaoCPF(java.awt.event.KeyEvent evt){
         String caracteres="0987654321";
         if(!caracteres.contains(evt.getKeyChar()+"")){

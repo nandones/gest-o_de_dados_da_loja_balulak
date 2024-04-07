@@ -15,13 +15,20 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
+ * Painel que serve como menu, é usado para acessar<br>
+ * outro painéis 
  *
  * @author Miguel
+ * @since 03/24
+ * @version 1.0
  */
 public class Painel_clientes extends javax.swing.JPanel {
 
     /**
      * Creates new form Painel_clientes
+     * @author Miguel
+     * @since 03/24
+     * @version 1.0
      */
     public Painel_clientes() {
         initComponents();
@@ -141,34 +148,37 @@ public class Painel_clientes extends javax.swing.JPanel {
         });
         add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * abre o painelPerfilClientes passando nome, id e cpf do cliente
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-        /**
-        * abre o painelPerfilClientes passando nome, id e cpf do cliente
-        */
+        
         String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
         String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
         String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
-
-        
         Janela.p2 = new Painel_PerfilCliente(nome, id, cpf);
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p2, BorderLayout.CENTER);
         maininterface.pack();
-
-
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
-
+    /**
+    * Mostra um JOptionPane que filtra os nomes do <br>
+    * cliente, no jtable, para mostrar apenas o nome <br>
+    * colocado no JOptionPane
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
-        /**
-        * Mostra um JOptionPane que filtra os nomes do <br>
-        * cliente, no jtable, para mostrar apenas o nome <br>
-        * colocado no JOptionPane
-        */
+
         String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
         textoDigitado = textoDigitado.toUpperCase();
-
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
@@ -193,26 +203,31 @@ public class Painel_clientes extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
-
+    /**
+    * Abre o painel Cadastro
+    * 
+    * @param evt java.awt.event.MouseEvent 
+    * 
+    * @author Miguel
+    * @since 04/24
+    * @version 1.0
+    */
     private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
-        /**
-        * Abre o painel Cadastro
-        */
         Janela.p4 = new Painel_cadastro();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p4, BorderLayout.CENTER);
         maininterface.pack();
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
-
+    /**
+    * Abre o Painel atualizarCadastro passsando o id do cliente
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+    */
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
-        /**
-        * Abre o Painel atualizarCadastro passsando o id do cliente
-        * @param id
-        */
         int id = Integer.valueOf((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
-
-        
         Janela.p5 = new Painel_atualizar_cadastro(id);
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -220,29 +235,39 @@ public class Painel_clientes extends javax.swing.JPanel {
         maininterface.pack();
         
     }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
-
+    /**
+    * inicializa o mock!
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+    */
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        /**
-        * inicializa o mock!
-        */
+        
         Mock mock = new Mock();
         mock.init();
-        
         abrirTabela();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
-
+    /**
+    * torna o botão voltar não visível quando clicado e reinicia o jtable
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+    */
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        /**
-        * torna o botão voltar não visível quando clicado
-        */
         bt_voltar.setVisible(false);
         abrirTabela();
     }//GEN-LAST:event_bt_voltarActionPerformed
 
+    /**
+    * deleta o cliente selecionado da tabela e do banco de dados
+    * @param evt java.awt.event.MouseEvent 
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+    */
     private void jbutton_deletar_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_deletar_cliente1MouseClicked
-        /**
-        * deleta o cliente selecionado da tabela e do banco de dados
-        */
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
@@ -253,12 +278,13 @@ public class Painel_clientes extends javax.swing.JPanel {
         PessoaDAO pessoaExcluida = pessoa.getPessoa(id);
         pessoaExcluida.excluir();
         abrirTabela();
-        
-        
     }//GEN-LAST:event_jbutton_deletar_cliente1MouseClicked
 
     /**
     * Coloca os dados do Banco de dados n jtable
+    * @author Miguel
+    * @since 03/24
+    * @version 1.0
     */
     public void abrirTabela() {
         
