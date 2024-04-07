@@ -261,7 +261,10 @@ public class ProdutoDAO {
      * @author fernando
      * @since 03/24
      * @version 1.0
-     * @see ProdutoDAO#salvarProdutSemIDSemSexo, ProdutoDAO#, ProdutoDAO#, ProdutoDAO#
+     * @see ProdutoDAO#salvarProdutSemIDSemSexo
+     * @see ProdutoDAO#salvarProdutoComIDSemSexo
+     * @see ProdutoDAO#salvarProdutoSemIDComSexo
+     * @see ProdutoDAO#salvarProdutoComIDComSexo
      */
     public boolean salvarProduto() throws SQLException {
         if (this.id == 0 && this.sexo == '\0') {

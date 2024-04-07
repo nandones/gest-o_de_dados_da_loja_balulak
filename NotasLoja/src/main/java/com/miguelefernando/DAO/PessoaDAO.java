@@ -24,9 +24,8 @@ import javax.swing.JOptionPane;
  * SET @@auto_increment_increment=1;<br>
  *
  * @author fernando e miguel
- * @since 0.0.1 04/24
- * @version 0.0.1
- * @author Fernando
+ * @since 03/24
+ * @version 1.0
  */
 public class PessoaDAO {
 
@@ -41,24 +40,31 @@ public class PessoaDAO {
     /**
      * construtor vazio, gerando apenas um objeto bancoDAO para posterior<br>
      * conseguir uma Connection através do método getConexao
-     * @see BancoDAO 
+     * @see BancoDAO
      * @see BancoDAO#getConexao
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public PessoaDAO() {
         this.banco = new BancoDAO();
     }
 
     /**
-     * Construtor com ID para registros pré-existentes <br>
-     * e para a desserialização das tuplas do MySQL
+     * Construtor com ID para registros pré-existentes -p/ TODO dados svindos do excel- <br>
+     * e para O unmarshalling das tuplas do MySQL<br>
+     * a column admin expressa um TODO: separar pessoas em funcionários e clientes
      *
      * @param id_cliente
      * @param nome
      * @param cidade
      * @param uf
      * @param cpf
-     * 
+     *
      * @see PessoaDAO#SalvarPessoa
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
         this.id = id_cliente;
@@ -71,8 +77,8 @@ public class PessoaDAO {
     }
 
     /**
-     * Construtor sem ID para novos registros <br>
-     * utilizado para serializar
+     * Construtor sem ID para marshalling <br>
+     * contando com o autoincrease da table Pessoa
      *
      * @param nome
      * @param cidade
@@ -128,10 +134,14 @@ public class PessoaDAO {
     }
 
     /**
-     * Salva uma pessoa no bdd como admin = 0
-     *
-     * @return boolean confirmação do insert
+     * Insere um novo registro na table pessoa sem informar o id,<br>
+     * contando com o MySQL para essa função.
      * @throws SQLException
+     * @return boolean confirmando a operação
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     *
      */
     private boolean salvarPessoaSemId() throws SQLException {
         Connection conexao = this.banco.getConexao();
@@ -157,7 +167,14 @@ public class PessoaDAO {
         }
         return resultado;
     }
-
+    /**
+     * simplesmente um seletor para caso o objeto inserido possui id previamente informado ou não<br>
+     * TODO: a inserção com o id informado não está operacional no momentpo que esta versão corresponde a 1.0
+     * @return boolean confiremando a inserção
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     public boolean SalvarPessoa() {
         if (this.id == 0) {
             try {
@@ -176,7 +193,13 @@ public class PessoaDAO {
         }
         return false;
     }
-
+    /**
+     * método que retorna uma lista de PessaoDAO correspondente ás tuplas do bd
+     * @return ArrayList&lt;ConsultaJoinPedidoEPedido_Produto&gt;
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     public ArrayList<PessoaDAO> listarPessoasDAO() {
 
         Connection conexao = this.banco.getConexao();
@@ -204,7 +227,17 @@ public class PessoaDAO {
         }
         return lista;
     }
-
+    /**
+     * CUIDADO: não é possível excluir um clinte com pedidos em seu nome,<br>
+     * essa operação exigiria excluir uma PK referenciada em outra tabela.<br>
+     * esse método só existe por ser considerado de bom tom para aplicarmos todos os <br>
+     * métodos aprendidos em sala, um sistema a sério estaria utilizando uma coluna que,br.
+     * seria preenchida com DATE  da exclusão da conta (null significa que a conta está ativa) 
+     * @return boolean para confirmar a exclusão
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     public boolean excluir() {
         Connection conexao = this.banco.getConexao();
 
@@ -228,6 +261,15 @@ public class PessoaDAO {
         return excluido;
     }
 
+    /***
+     * a partir de um id como parâmetro, o método retorna a tupla da table pessoa<br>
+     * correspondente a esse id como objeto de unmashaling
+     * @param int codigo
+     * @return objeto PessoaDAO buscado
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     public PessoaDAO getPessoa(int codigo) {
         Connection conexao = this.banco.getConexao();
 
@@ -258,7 +300,12 @@ public class PessoaDAO {
         }
         return objeto;
     }
-
+    /**
+     * ATENÇÃO: exige objeto PessoaDAO correspondente á uma tupla ao chamar este método,<br>
+     * por não aceitar parâmetros, esta Pessoa, com this.id será localizada e terá as columns<br>
+     * nome, cidade, uf, CPF substituidos pelos atributos da atual PessoaDAO instanciada
+     * @return 
+     */
     public boolean update() {
         Connection conexao = this.banco.getConexao();
 

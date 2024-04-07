@@ -129,7 +129,7 @@ public class ConsultaJoinPedidoEPedido_Produto {
     /**
      * Método que a partir de um objeto instanciado com id_pedido retorna <br>
      * um ArrayList de ConsultaJoinPedidoEPedido_Produto.
-     * @return @return ArrayList&lt;ConsultaJoinPedidoEPedido_Produto&gt;
+     * @return ArrayList&lt;ConsultaJoinPedidoEPedido_Produto&gt;
      * @author fernando
      * @since 04/24
      * @version 1.0

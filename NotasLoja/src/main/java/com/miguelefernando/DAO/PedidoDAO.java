@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 /**
  * Classe para o marshalling dos dados da table pedido
  *
+ * @see BancoDAO
  * @author Fernando
  */
 public class PedidoDAO {
@@ -25,8 +26,10 @@ public class PedidoDAO {
     private BancoDAO banco;
 
     /**
-     * construtor com id para unmarshalling dos dados
+     * construtor com id para unmarshalling dos dados<br>
+     * e instancia um bancoDAO
      *
+     * @see BancoDAO
      * @param id
      * @param id_cliente
      * @param emissao
@@ -48,9 +51,11 @@ public class PedidoDAO {
     }
 
     /**
-     * construtor sem id, condizente com o banco normalizado <br>
-     * e suas inserções
+     * construtor sem id, para o marshalling contando com o auto increase da
+     * coluna id<br>
+     * e instancia um bancoDAO
      *
+     * @see BancoDAO
      * @param id_cliente
      * @param emissao
      * @param fechamento
@@ -71,7 +76,6 @@ public class PedidoDAO {
 
     /**
      * construtor vazio que instancia um bancoDAO
-     *
      * @see BancoDAO
      * @author fernando
      * @since 03/24
@@ -139,8 +143,9 @@ public class PedidoDAO {
 
     /**
      * Insere uma tupla na table pedido
+     *
      * @return boolean confirmando a operação
-     * @throws SQLException 
+     * @throws SQLException
      * @author fernando
      * @since 03/24
      * @version 1.0
@@ -172,7 +177,9 @@ public class PedidoDAO {
     }
 
     /**
-     * lista um ArrayList de PedidoDAO com o unmarshlling das tuplas da table pedido
+     * lista um ArrayList de PedidoDAO com o unmarshlling das tuplas da table
+     * pedido
+     *
      * @return ArrayList&lt;PedidoDAO&GT;
      * @author fernando
      * @since 03/24
