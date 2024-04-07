@@ -155,7 +155,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     * no enter, será aberto o pedido selecionado
     * @param evt java.awt.event.KeyEvent
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
    */
     private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased

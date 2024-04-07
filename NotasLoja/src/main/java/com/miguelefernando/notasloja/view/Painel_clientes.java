@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * outros painéis 
  *
  * @author Miguel
- * @since 03/24
+ * @since 04/24
  * @version 1.0
  */
 public class Painel_clientes extends javax.swing.JPanel {
@@ -27,7 +27,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     /**
      * Creates new form Painel_clientes
      * @author Miguel
-     * @since 03/24
+     * @since 04/24
      * @version 1.0
      */
     public Painel_clientes() {
@@ -223,7 +223,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     * Abre o Painel atualizarCadastro passsando o id do cliente
     * @param evt java.awt.event.MouseEvent 
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
@@ -239,7 +239,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     * inicializa o mock!
     * @param evt java.awt.event.MouseEvent 
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -252,7 +252,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     * torna o botão voltar não visível quando clicado e reinicia o jtable
     * @param evt java.awt.event.MouseEvent 
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
@@ -264,7 +264,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     * deleta o cliente selecionado da tabela e do banco de dados
     * @param evt java.awt.event.MouseEvent 
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     private void jbutton_deletar_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_deletar_cliente1MouseClicked
@@ -283,7 +283,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     /**
     * Coloca os dados do Banco de dados n jtable
     * @author Miguel
-    * @since 03/24
+    * @since 04/24
     * @version 1.0
     */
     public void abrirTabela() {

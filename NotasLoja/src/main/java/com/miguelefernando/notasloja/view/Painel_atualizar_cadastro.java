@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
  * 
  *
  * @author Miguel
- * @since 05/24
+ * @since 04/24
  * @version 1.0
  */
 public class Painel_atualizar_cadastro extends javax.swing.JPanel {
@@ -131,7 +131,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     /**
     * Atualiza as informações que o usuário decidir reescrever.
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     private void bt_recadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_recadastrarMouseClicked
@@ -168,7 +168,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         * chama o método formatacaoCPF.
         * @param evt java.awt.event.KeyEvent
         * @author Miguel
-        * @since 05/24
+        * @since 04/24
         * @version 1.0
         */
     private void tf_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cpfKeyTyped
@@ -178,7 +178,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         * Volta para o painel clientes
         * @param evt java.awt.event.MouseEvent
         * @author Miguel
-        * @since 05/24
+        * @since 04/24
         * @version 1.0
         */
     private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
@@ -194,7 +194,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * @param cpf
     * @return boolean verificação do cpf
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */ 
     public boolean verificarFormatoCPF(String cpf) {
@@ -249,7 +249,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * @param cidade
     * @param uf
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     public void setarTF(String nome, String cpf, String cidade, String uf){
@@ -265,7 +265,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * @param cpf
     * @return String cpfFormatado
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */  
     public static String formatarCPF(String cpf) {
@@ -284,7 +284,7 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * Impede a digitação de digitos que não sejam números para evitar erros na verificação de cpf
     * @param evt
     * @author Miguel
-    * @since 05/24
+    * @since 04/24
     * @version 1.0
     */
     public void formatacaoCPF(java.awt.event.KeyEvent evt){
