@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Painel que serve como menu, é usado para acessar<br>
- * outro painéis 
+ * outros painéis 
  *
  * @author Miguel
  * @since 03/24

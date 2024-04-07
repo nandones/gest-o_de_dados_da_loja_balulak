@@ -13,14 +13,20 @@ import javax.swing.SwingUtilities;
 
 
 /**
+ * Painel que realiza o update com as novas<br>
+ * informações do cliente
+ * 
  *
  * @author Miguel
+ * @since 05/24
+ * @version 1.0
  */
 public class Painel_atualizar_cadastro extends javax.swing.JPanel {
 
      int id_pessoa;
     /**
      * Creates new form Painel_atualizar_cadastro
+     * @param id int
      */
     public Painel_atualizar_cadastro(int id) {
         initComponents();
@@ -122,11 +128,13 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         });
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * Atualiza as informações que o usuário decidir reescrever.
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
+    */
     private void bt_recadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_recadastrarMouseClicked
-        /**
-        * Atualiza as informações que o usuário decidir reescrever.
-        */
         String nome = tf_nome.getText();
         String cpf = tf_cpf.getText();
         String cidade = tf_cidade.getText();
@@ -156,18 +164,24 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
         }
     }//GEN-LAST:event_bt_recadastrarMouseClicked
-
-    private void tf_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cpfKeyTyped
         /**
         * chama o método formatacaoCPF.
+        * @param evt java.awt.event.KeyEvent
+        * @author Miguel
+        * @since 05/24
+        * @version 1.0
         */
+    private void tf_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cpfKeyTyped
         formatacaoCPF(evt);
     }//GEN-LAST:event_tf_cpfKeyTyped
-
-    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
         /**
         * Volta para o painel clientes
+        * @param evt java.awt.event.MouseEvent
+        * @author Miguel
+        * @since 05/24
+        * @version 1.0
         */
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -179,6 +193,9 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * Realiza a verificação se o cpf inserido é válido.
     * @param cpf
     * @return boolean verificação do cpf
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
     */ 
     public boolean verificarFormatoCPF(String cpf) {
         // Remove caracteres não numéricos do CPF
@@ -231,6 +248,9 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     * @param cpf
     * @param cidade
     * @param uf
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
     */
     public void setarTF(String nome, String cpf, String cidade, String uf){
         tf_nome.setText(nome);
@@ -244,6 +264,9 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
      * Realiza a formatação do cpf (###.###.###-##).
     * @param cpf
     * @return String cpfFormatado
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
     */  
     public static String formatarCPF(String cpf) {
         if (cpf == null || cpf.length() != 11) {
@@ -260,6 +283,9 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     /**
     * Impede a digitação de digitos que não sejam números para evitar erros na verificação de cpf
     * @param evt
+    * @author Miguel
+    * @since 05/24
+    * @version 1.0
     */
     public void formatacaoCPF(java.awt.event.KeyEvent evt){
         String caracteres="0987654321";
