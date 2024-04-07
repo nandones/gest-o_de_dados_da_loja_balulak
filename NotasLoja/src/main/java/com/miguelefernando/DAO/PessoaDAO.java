@@ -264,7 +264,7 @@ public class PessoaDAO {
     /***
      * a partir de um id como parâmetro, o método retorna a tupla da table pessoa<br>
      * correspondente a esse id como objeto de unmashaling
-     * @param int codigo
+     * @param codigo int
      * @return objeto PessoaDAO buscado
      * @author fernando
      * @since 03/24

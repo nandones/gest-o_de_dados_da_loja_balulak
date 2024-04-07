@@ -26,7 +26,6 @@ public class BancoDAO {
      * informe aqui, não por parâmetro, mas editando o código, o endereço de
      * <br>
      * seu banco de dados MySQL
-     * @author fernando
      * @since 03/24
      * @version 1.0
      */
