@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- *
- * @author Fernando
- */
 public class Pedido_ProdutoDAO {
 
     private int id_pedido;

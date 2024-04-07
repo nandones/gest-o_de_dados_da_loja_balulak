@@ -10,8 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Fernando
+ *  Classe para o marshalling dos dados da table pedido
+ *  @author Fernando
  */
 public class PedidoDAO {
     

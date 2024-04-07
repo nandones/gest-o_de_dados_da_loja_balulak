@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author fernando
- */
+
 public class Mock {
 
     public static void main(String[] args) {

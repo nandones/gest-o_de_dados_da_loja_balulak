@@ -168,7 +168,6 @@ public class Painel_cadastro extends javax.swing.JPanel {
     * Realiza a verificação se o cpf inserido é válido.
     * @param cpf
     */
-    
     public boolean verificarFormatoCPF(String cpf) {
         // Remove caracteres não numéricos do CPF
         cpf = cpf.replaceAll("[^0-9]", "");
