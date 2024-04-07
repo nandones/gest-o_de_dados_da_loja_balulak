@@ -10,28 +10,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *  Classe para o marshalling dos dados da table pedido
- *  @author Fernando
+ * Classe para o marshalling dos dados da table pedido
+ *
+ * @author Fernando
  */
 public class PedidoDAO {
-    
+
     private int id;
     private int id_cliente;
-    private Date emissao;   
+    private Date emissao;
     private Date fechamento;
     private char status;
     private double total;
     private BancoDAO banco;
 
     /**
-     * construtor com id para dados legados <br>
-     * e desserializações
+     * construtor com id para unmarshalling dos dados
+     *
      * @param id
      * @param id_cliente
      * @param emissao
      * @param fechamento
      * @param status
      * @param total
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public PedidoDAO(int id, int id_cliente, Date emissao, Date fechamento, char status, double total) {
         this.id = id;
@@ -46,11 +50,15 @@ public class PedidoDAO {
     /**
      * construtor sem id, condizente com o banco normalizado <br>
      * e suas inserções
+     *
      * @param id_cliente
      * @param emissao
      * @param fechamento
      * @param status
-     * @param total 
+     * @param total
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public PedidoDAO(int id_cliente, Date emissao, Date fechamento, char status, double total) {
         this.id_cliente = id_cliente;
@@ -61,6 +69,14 @@ public class PedidoDAO {
         this.banco = new BancoDAO();
     }
 
+    /**
+     * construtor vazio que instancia um bancoDAO
+     *
+     * @see BancoDAO
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     public PedidoDAO() {
         this.banco = new BancoDAO();
     }
@@ -120,9 +136,16 @@ public class PedidoDAO {
     public void setBanco(BancoDAO banco) {
         this.banco = banco;
     }
-    
-    
-        public boolean salvarPedidoDAO() throws SQLException {
+
+    /**
+     * Insere uma tupla na table pedido
+     * @return boolean confirmando a operação
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
+    public boolean salvarPedidoDAO() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
@@ -147,8 +170,15 @@ public class PedidoDAO {
         }
         return resultado;
     }
-        
-        public ArrayList<PedidoDAO> listarPedidosDAO() {
+
+    /**
+     * lista um ArrayList de PedidoDAO com o unmarshlling das tuplas da table pedido
+     * @return ArrayList&lt;PedidoDAO&GT;
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
+    public ArrayList<PedidoDAO> listarPedidosDAO() {
 
         Connection conexao = this.banco.getConexao();
         ArrayList<PedidoDAO> lista = new ArrayList<>();
@@ -166,7 +196,7 @@ public class PedidoDAO {
                 Date fechamento = resultados.getDate("fechamento");
                 char status = resultados.getString("status").charAt(0);
                 double total = resultados.getDouble("total");
-                
+
                 objeto = new PedidoDAO(id, id_cliente, emissao, fechamento, status, total);
                 lista.add(objeto);
             }
@@ -176,10 +206,5 @@ public class PedidoDAO {
         }
         return lista;
     }
-        
-    
-    
-    
+
 }
-
-

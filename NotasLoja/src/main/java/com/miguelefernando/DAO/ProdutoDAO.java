@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * zxdklvv
+ * entidade que representa a table produto
  *
- * @author Fernando
+ * @author fernando
+ * @since 03/24
+ * @version 1.0
  */
 public class ProdutoDAO {
 
@@ -18,14 +20,15 @@ public class ProdutoDAO {
     private BancoDAO banco;
 
     /**
-     * construtor com id somente para dados previamente cadastrados
-     * @deprecated 
+     * construtor com id para unmashalling
      * @param id
      * @param preco
      * @param nome
      * @param sexo
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
-    @Deprecated
     public ProdutoDAO(int id, double preco, String nome, char sexo) {
         this.id = id;
         this.preco = preco;
@@ -35,13 +38,13 @@ public class ProdutoDAO {
     }
 
     /**
-     * construtor com id somente para dados previamente cadastrados
-     * @deprecated nao utilizavel ainda
+     * construtor com id para unmashalling sem sexo, que é<br>
+     * column opicional.
      * @param id
      * @param preco
      * @param nome
+     * construtor com id para unmashalling
      */
-    @Deprecated
     public ProdutoDAO(int id, double preco, String nome) {
         this.id = id;
         this.preco = preco;
@@ -50,11 +53,15 @@ public class ProdutoDAO {
     }
 
     /**
-     * construtor com sexo da roupa
+     * construtor com sexo da roupa sem id<br>
+     * para mashlling
      *
      * @param preco
      * @param nome
      * @param sexo
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public ProdutoDAO(double preco, String nome, char sexo) {
         this.preco = preco;
@@ -64,23 +71,20 @@ public class ProdutoDAO {
     }
 
     /**
-     * construtor sem sexo da roupa
+     * construtor sem sexo da roupa sem id<br>
+     * para mashlling
      *
      * @param preco
      * @param nome
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
      */
     public ProdutoDAO(double preco, String nome) {
         this.preco = preco;
         this.nome = nome;
         this.banco = new BancoDAO();
     }
-
-    /*
-    this.id = id;
-        this.preco = preco;
-        this.nome = nome;
-        this.sexo = sexo;
-     */
 
     public int getId() {
         return id;
@@ -121,9 +125,15 @@ public class ProdutoDAO {
     public void setBanco(BancoDAO banco) {
         this.banco = banco;
     }
-    
-    
-    @Deprecated
+
+    /**
+     * nome já autoexplicativo
+     * @return boolean confirmando a inserção
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     private boolean salvarProdutoComIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -150,7 +160,15 @@ public class ProdutoDAO {
         return resultado;
     }
 
-    @Deprecated
+     /**
+     * nome já autoexplicativo
+     * @return boolean confirmando a inserção
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     * @deprecated: não está operacional ainda
+     */
     private boolean salvarProdutoComIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -175,7 +193,14 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-
+    /**
+     * nome já autoexplicativo
+     * @return boolean confirmando a inserção
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     private boolean salvarProdutoSemIDComSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -198,7 +223,14 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-
+    /**
+     * nome já autoexplicativo
+     * @return boolean confirmando a inserção
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     */
     private boolean salvarProdutSemIDSemSexo() throws SQLException {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
@@ -221,7 +253,16 @@ public class ProdutoDAO {
         }
         return resultado;
     }
-
+    /**
+     * um switch que seleciona qual método ele usa para fazer o mashaling,
+     * não insira uma entidade com id.
+     * @return boolean confirmando a inserção
+     * @throws SQLException 
+     * @author fernando
+     * @since 03/24
+     * @version 1.0
+     * @see ProdutoDAO#salvarProdutSemIDSemSexo, ProdutoDAO#, ProdutoDAO#, ProdutoDAO#
+     */
     public boolean salvarProduto() throws SQLException {
         if (this.id == 0 && this.sexo == '\0') {
             salvarProdutSemIDSemSexo();

@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * \lfvgheruo
+ * chama o jframe
  *
  * @author Fernando
  */

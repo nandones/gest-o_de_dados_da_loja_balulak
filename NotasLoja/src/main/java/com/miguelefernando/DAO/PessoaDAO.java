@@ -42,7 +42,7 @@ public class PessoaDAO {
      * construtor vazio, gerando apenas um objeto bancoDAO para posterior<br>
      * conseguir uma Connection através do método getConexao
      * @see BancoDAO 
-     * @see BancoDAO.getConexao
+     * @see BancoDAO#getConexao
      */
     public PessoaDAO() {
         this.banco = new BancoDAO();
@@ -58,7 +58,7 @@ public class PessoaDAO {
      * @param uf
      * @param cpf
      * 
-     * @see salvarPessoa
+     * @see PessoaDAO#SalvarPessoa
      */
     public PessoaDAO(int id_cliente, String nome, String cidade, String uf, String cpf) {
         this.id = id_cliente;
