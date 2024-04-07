@@ -1,10 +1,12 @@
 package com.miguelefernando.notasloja.main;
 
+import com.miguelefernando.DAO.BancoDAO;
 import com.miguelefernando.DAO.ConsultaJoinPedidoEPedido_Produto;
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
 import com.miguelefernando.notasloja.utils.Mock;
 import com.miguelefernando.notasloja.view.Janela;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ public class main {
         mi.setVisible(true);
         mi.setLocationRelativeTo(null);
 
-        
+
+
     }
 }

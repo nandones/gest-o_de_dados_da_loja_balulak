@@ -13,8 +13,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe que para receber todos os itens comprados em apenas um pedido. <br>
+ * Receber o unmarshalling a partir da join entre a table pedido_produto <br>
+ * pedido_produto e produto, filtrando com o id do pedido.<br>
+ * Necessário o uso de laço de repetição, pois cada tupla retornada pela <br>
+ * consulta é representada por um objeto ConsultaJoinPedidoEPedido_Produto.
  *
- * @author nando
+ * @author fernando
+ * @since 04/24
+ * @version 1.0
  */
 public class ConsultaJoinPedidoEPedido_Produto {
 
@@ -27,11 +34,24 @@ public class ConsultaJoinPedidoEPedido_Produto {
     private char sexo;
     private BancoDAO banco;
 
-    public ConsultaJoinPedidoEPedido_Produto(int id) {
-        this.id = id;
+    /**
+     * Construtor para marshalling a partir do id do pedido e realizar buscas posteriores
+     * @param id_pedido 
+     * @author fernando
+     * @since 04/24
+     * @version 1.0
+     */
+    public ConsultaJoinPedidoEPedido_Produto(int id_pedido) {
+        this.id_pedido = id_pedido;
         this.banco = new BancoDAO();
     }
-
+    /**
+     * Construtor para unmarshalling, sendo instanciado um objeto para cada tupla retornada.
+     * @param id_pedido 
+     * @author fernando
+     * @since 04/24
+     * @version 1.0
+     */
     public ConsultaJoinPedidoEPedido_Produto(int id_pedido, int id_produto, int quantidade, int id, double preco, char sexo, String nome) {
         this.id_pedido = id_pedido;
         this.id_produto = id_produto;
@@ -106,7 +126,14 @@ public class ConsultaJoinPedidoEPedido_Produto {
     public void setBanco(BancoDAO banco) {
         this.banco = banco;
     }
-
+    /**
+     * Método que a partir de um objeto instanciado com id_pedido retorna <br>
+     * um ArrayList de ConsultaJoinPedidoEPedido_Produto.
+     * @return @return ArrayList&lt;ConsultaJoinPedidoEPedido_Produto&gt;
+     * @author fernando
+     * @since 04/24
+     * @version 1.0
+     */
     public ArrayList<ConsultaJoinPedidoEPedido_Produto> listarJoin() {
         Connection conexao = this.banco.getConexao();
         ArrayList<ConsultaJoinPedidoEPedido_Produto> lista = new ArrayList<>();
@@ -116,7 +143,7 @@ public class ConsultaJoinPedidoEPedido_Produto {
 
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, this.id);
+            consulta.setInt(1, this.id_pedido);
             resultados = consulta.executeQuery();
 
             while (resultados.next()) {
