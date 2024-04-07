@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * @author Miguel
  */
 public class Painel_cadastro extends javax.swing.JPanel {
 
@@ -111,44 +111,44 @@ public class Painel_cadastro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_cadastrarMouseClicked
-        String nome = jtext_nome.getText();
-        String cpf = jtext_cpf.getText();
-        String cidade = jtext_cidade.getText();
-       
-        nome = nome.toUpperCase();
-        cidade = cidade.toUpperCase();
-    
         
-        
-        String uf = (String) combobox_uf.getSelectedItem();
-        if (uf == null) {
-            JOptionPane.showMessageDialog(null, "selecione um uf!");
-        } else if(verificarFormatoCPF(cpf)==false){
-            JOptionPane.showMessageDialog(null, "digite um cpf válido!");
-            jtext_cpf.setText("");
-        }else if(nome != null && cpf!=null && cidade !=null){
-            cpf = formatarCPF(cpf);
+    /**
+    * Método para inserir os dados do cliente em suas respectivas labels
+    */
+    String nome = jtext_nome.getText();
+    String cpf = jtext_cpf.getText();
+    String cidade = jtext_cidade.getText(); 
+    nome = nome.toUpperCase();
+    cidade = cidade.toUpperCase();
+    String uf = (String) combobox_uf.getSelectedItem();
+    if (uf == null) {
+        JOptionPane.showMessageDialog(null, "selecione um uf!");
+    } else if(verificarFormatoCPF(cpf)==false){
+        JOptionPane.showMessageDialog(null, "digite um cpf válido!");
+        jtext_cpf.setText("");
+            }else if(nome != null && cpf!=null && cidade !=null){
+                cpf = formatarCPF(cpf);
            
-            PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
+                PessoaDAO pessoa = new PessoaDAO(nome, cidade, uf, cpf);
             
-            pessoa.SalvarPessoa(); //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
-            Janela.p3 = new Painel_clientes();
-            JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
-            maininterface.getContentPane().remove(this);
-            maininterface.add(Janela.p3, BorderLayout.CENTER);
-            maininterface.pack();
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+                pessoa.SalvarPessoa(); //Logger.getLogger(Painel_cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                Janela.p3 = new Painel_clientes();
+                JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
+                maininterface.getContentPane().remove(this);
+                maininterface.add(Janela.p3, BorderLayout.CENTER);
+                maininterface.pack();
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             
-        }else{
-           JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
-        }
-        
-        
-        
-        
+            }else{
+                JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
+            }
+  
     }//GEN-LAST:event_jbutton_cadastrarMouseClicked
 
     private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
+        /**
+    * Volta para o painel clientes
+    */
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -157,9 +157,17 @@ public class Painel_cadastro extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_voltarMouseClicked
 
     private void jtext_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtext_cpfKeyTyped
+        /**
+        * chama o método formatacaoCPF.
+
+        */
         formatacaoCPF(evt);
     }//GEN-LAST:event_jtext_cpfKeyTyped
 
+    /**
+    * Realiza a verificação se o cpf inserido é válido.
+    * @param cpf
+    */
     
     public boolean verificarFormatoCPF(String cpf) {
         // Remove caracteres não numéricos do CPF
@@ -206,6 +214,10 @@ public class Painel_cadastro extends javax.swing.JPanel {
         return true;
     }
     
+    /**
+     * Realiza a formatação do cpf (###.###.###-##).
+    * @param cpf
+    */
     public static String formatarCPF(String cpf) {
         if (cpf == null || cpf.length() != 11) {
             throw new IllegalArgumentException("CPF inválido");
@@ -217,6 +229,10 @@ public class Painel_cadastro extends javax.swing.JPanel {
                cpf.substring(6, 9) + "-" +
                cpf.substring(9);
     }
+    /**
+    * Impede a digitação de digitos que não sejam números para evitar erros na verificação de cpf
+    * @param evt
+    */
     
     public void formatacaoCPF(java.awt.event.KeyEvent evt){
         String caracteres="0987654321";

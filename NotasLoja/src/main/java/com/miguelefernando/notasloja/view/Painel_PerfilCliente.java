@@ -119,10 +119,18 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_relatorioMouseClicked
-         JOptionPane.showMessageDialog(null, "Indisponível nessa versão!");
+        /**
+        * JOptionPane
+        *
+        */
+        JOptionPane.showMessageDialog(null, "Indisponível nessa versão!");
     }//GEN-LAST:event_bt_relatorioMouseClicked
 
     private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
+        /**
+     * Volta para o painel Cliente
+     */
+        
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -131,7 +139,11 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_voltarMouseClicked
 
     private void jt_tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_tabelaKeyReleased
-        
+        /**
+        * Entrada no Pedido, onde será mostardo as <br>
+        * informações do pedido assim que clicado <br>
+        * no enter, será aberto o pedido selecionado
+        */
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int id = Integer.parseInt((String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0));
             ConsultaJoinPedidoEPedido_Produto c = new ConsultaJoinPedidoEPedido_Produto(id);
@@ -147,13 +159,23 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_jt_tabelaKeyReleased
-
+    /**
+    * Método para inserir os dados do cliente em suas respectivas labels
+    * @param nome
+    * @param id
+    * @param cpf
+    */
     public void setLabels(String nome, String id, String cpf){
         lb_nome.setText(nome);
         lb_id.setText(id);
         lb_cpf.setText(cpf);
     }
-    
+    /**
+    * Método para inserir os dados do pedido no jtable<br>
+    * usando o id para pegar somente os dados do cliente<br>
+    * selecionado
+    * @param id
+    */
     public void setTabela(String id){
         
         PedidoDAO pedido = new PedidoDAO();
@@ -183,10 +205,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         jt_tabela.changeSelection(0, 0, false, false);
 }
     
-    public void qualquercoisa(){
-        
-        
-    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

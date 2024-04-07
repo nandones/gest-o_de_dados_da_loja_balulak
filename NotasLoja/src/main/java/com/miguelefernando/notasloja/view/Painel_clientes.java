@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author alunolages
+ * @author Miguel
  */
 public class Painel_clientes extends javax.swing.JPanel {
 
@@ -143,8 +143,9 @@ public class Painel_clientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
-//        int selectedRow = jtable_tabela.getSelectedRow();
-//        if (selectedRow!=-1) {
+        /**
+        * abre o painelPerfilClientes passando nome, id e cpf do cliente
+        */
         String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
         String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
         String cpf = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 2);
@@ -160,6 +161,11 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
 
     private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
+        /**
+        * Mostra um JOptionPane que filtra os nomes do <br>
+        * cliente, no jtable, para mostrar apenas o nome <br>
+        * colocado no JOptionPane
+        */
         String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
         textoDigitado = textoDigitado.toUpperCase();
 
@@ -189,6 +195,9 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
 
     private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
+        /**
+        * Abre o painel Cadastro
+        */
         Janela.p4 = new Painel_cadastro();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
@@ -197,7 +206,10 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
 
     private void bt_atualizarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_atualizarCadastroMouseClicked
-        
+        /**
+        * Abre o Painel atualizarCadastro passsando o id do cliente
+        * @param id
+        */
         int id = Integer.valueOf((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
 
         
@@ -210,6 +222,9 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_atualizarCadastroMouseClicked
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        /**
+        * inicializa o mock!
+        */
         Mock mock = new Mock();
         mock.init();
         
@@ -217,11 +232,17 @@ public class Painel_clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        /**
+        * torna o botão voltar não visível quando clicado
+        */
         bt_voltar.setVisible(false);
         abrirTabela();
     }//GEN-LAST:event_bt_voltarActionPerformed
 
     private void jbutton_deletar_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_deletar_cliente1MouseClicked
+        /**
+        * deleta o cliente selecionado da tabela e do banco de dados
+        */
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
@@ -236,6 +257,9 @@ public class Painel_clientes extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jbutton_deletar_cliente1MouseClicked
 
+    /**
+    * Coloca os dados do Banco de dados n jtable
+    */
     public void abrirTabela() {
         
         
