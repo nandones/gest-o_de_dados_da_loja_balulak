@@ -22,27 +22,6 @@ import java.util.logging.Logger;
 
 public class Mock {
 
-    public static void main(String[] args) {
-
-        Connection conexao = new BancoDAO().getConexao();
-
-        ProdutoDAO pr1 = new ProdutoDAO(20.0, "camisa you ken do ramon", 'r');
-        ProdutoDAO pr2 = new ProdutoDAO(20.0, "moletom verde do luisao", 'p');
-        try {
-            System.out.println(pr1.salvarProduto());
-            System.out.println(pr2.salvarProduto());
-        } catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        PessoaDAO dummy = new PessoaDAO();
-        ArrayList<PessoaDAO> pessoas = dummy.listarPessoasDAO();
-        for (int i = 0; i < pessoas.size(); i++) {
-            System.out.println("nome : " + pessoas.get(i).getNome() + " -- CPF: " + pessoas.get(i).getCpf());
-
-        }
-
-    }
 
     public void ResetPesoa() {
         BancoDAO banco = new BancoDAO();
@@ -143,11 +122,11 @@ public class Mock {
     public void InsereProdutos() {
         Connection conexao = new BancoDAO().getConexao();
 
-        ProdutoDAO p1 = new ProdutoDAO(40.0, "REGATA BLINDADA", 'U');
-        ProdutoDAO p2 = new ProdutoDAO(37.0, "SAIA", 'F');
-        ProdutoDAO p3 = new ProdutoDAO(200.0, "CAMISETA INSIDER", 'M');
-        ProdutoDAO p4 = new ProdutoDAO(40.0, "CAMISETA INSIDER", 'F');
-        ProdutoDAO p5 = new ProdutoDAO(40.0, "CORTA VENTO", 'U');
+        ProdutoDAO p1 = new ProdutoDAO(40.0, "Camisa Vermelha",'M', "CAMISA", "Vans");
+        ProdutoDAO p2 = new ProdutoDAO(37.0, "SAIA", 'F', "SAIA", "CalvinKlein");
+        ProdutoDAO p3 = new ProdutoDAO(200.0, "CAMISETA VERMELHA INSIDER", 'M', "CAMISETA", "INSIDER");
+        ProdutoDAO p4 = new ProdutoDAO(40.0, "CAMISETA PRATEADA INSIDER", 'F', "CAMISETA", "INSIDER");
+        ProdutoDAO p5 = new ProdutoDAO(40.0, "CORTA VENTO CINZA", 'M', "CORTA VENTO", "OAKLEY");
 
         try {
             System.out.println(p1.salvarProduto());
@@ -166,7 +145,7 @@ public class Mock {
 
         Date dataAtual = new Date(System.currentTimeMillis());
 
-        PedidoDAO p1 = new PedidoDAO(1, new Date(2021 - 1900, 20, 12), new Date(2023 - 1900, 0, 7), 'f', 117);// cada anp deve ser subtraido por 1900 para funcionar, e o mes começa em 0 (jan = 0)
+        PedidoDAO p1 = new PedidoDAO(1, new Date(2021 - 1900, 20, 12), new Date(2023 - 1900, 0, 7), 'f', 117);// cada ano deve ser subtraido por 1900 para funcionar, e o mes começa em 0 (jan = 0)
         PedidoDAO p2 = new PedidoDAO(4, dataAtual, new Date(2030 - 1900, 5, 1), 'a', 40);//cada vez que rodar o mock atualizara
 
         try {

@@ -17,6 +17,8 @@ public class ProdutoDAO {
     private double preco;
     private String nome;
     private char sexo;
+    private String categoria;
+    private String marca;
     private BancoDAO banco;
 
     /**
@@ -25,15 +27,19 @@ public class ProdutoDAO {
      * @param preco
      * @param nome
      * @param sexo
+     * @param categoria
+     * @param marca
      * @author fernando
      * @since 03/24
      * @version 1.0
      */
-    public ProdutoDAO(int id, double preco, String nome, char sexo) {
+    public ProdutoDAO(int id, double preco, String nome, char sexo, String categoria, String marca) {
         this.id = id;
         this.preco = preco;
         this.nome = nome;
         this.sexo = sexo;
+        this.categoria = categoria;
+        this.marca = marca;
         this.banco = new BancoDAO();
     }
 
@@ -43,12 +49,16 @@ public class ProdutoDAO {
      * @param id
      * @param preco
      * @param nome
+     * @param categoria
+     * @param marca
      * construtor com id para unmashalling
      */
-    public ProdutoDAO(int id, double preco, String nome) {
+    public ProdutoDAO(int id, double preco, String nome, String categoria, String marca) {
         this.id = id;
         this.preco = preco;
         this.nome = nome;
+        this.categoria = categoria;
+        this.marca = marca;
         this.banco = new BancoDAO();
     }
 
@@ -59,14 +69,18 @@ public class ProdutoDAO {
      * @param preco
      * @param nome
      * @param sexo
+     * @param categoria
+     * @param marca
      * @author fernando
      * @since 03/24
      * @version 1.0
      */
-    public ProdutoDAO(double preco, String nome, char sexo) {
+    public ProdutoDAO(double preco, String nome, char sexo, String categoria, String marca) {
         this.preco = preco;
         this.nome = nome;
         this.sexo = sexo;
+        this.categoria = categoria;
+        this.marca = marca;
         this.banco = new BancoDAO();
     }
 
@@ -76,13 +90,17 @@ public class ProdutoDAO {
      *
      * @param preco
      * @param nome
+     * @param categoria
+     * @param marca
      * @author fernando
      * @since 03/24
      * @version 1.0
      */
-    public ProdutoDAO(double preco, String nome) {
+    public ProdutoDAO(double preco, String nome, String categoria, String marca) {
         this.preco = preco;
         this.nome = nome;
+        this.categoria = categoria;
+        this.marca = marca;
         this.banco = new BancoDAO();
     }
 
@@ -126,6 +144,26 @@ public class ProdutoDAO {
         this.banco = banco;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+    
+    
+    
+
     /**
      * nome já autoexplicativo
      * @return boolean confirmando a inserção
@@ -139,7 +177,7 @@ public class ProdutoDAO {
         boolean resultado;
 
         String sql = "SET @@auto_increment_increment=0; "
-                + "INSERT INTO produto(id, preco, nome, sexo) VALUES (?, ?, ?, ?);"
+                + "INSERT INTO produto(id, preco, nome, sexo, categoria, marca) VALUES (?, ?, ?, ?, ?, ?);"
                 + "SET @@auto_increment_increment=1;";
         PreparedStatement consulta;
 
@@ -150,6 +188,8 @@ public class ProdutoDAO {
             consulta.setDouble(2, this.preco);
             consulta.setString(3, this.nome);
             consulta.setString(4, String.valueOf(this.sexo));
+            consulta.setString(5, this.categoria);
+            consulta.setString(6, this.marca);
             consulta.execute();
             resultado = true;
 
@@ -174,7 +214,7 @@ public class ProdutoDAO {
         boolean resultado;
 
         String sql = "SET @@auto_increment_increment=0; "
-                + "INSERT INTO produto(id, preco, nome) VALUES (?, ?, ?);"
+                + "INSERT INTO produto(id, preco, nome, categoria, marca) VALUES (?, ?, ?, ?, ?);"
                 + "SET @@auto_increment_increment=1;";
         PreparedStatement consulta;
 
@@ -184,6 +224,8 @@ public class ProdutoDAO {
             consulta.setInt(1, this.id);
             consulta.setDouble(2, this.preco);
             consulta.setString(3, this.nome);
+            consulta.setString(4, this.categoria);
+            consulta.setString(5, this.marca);
             consulta.execute();
             resultado = true;
 
@@ -205,7 +247,7 @@ public class ProdutoDAO {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql = "INSERT INTO produto(preco, nome, sexo) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO produto(preco, nome, sexo, categoria, marca) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement consulta;
 
         try {
@@ -214,6 +256,8 @@ public class ProdutoDAO {
             consulta.setDouble(1, this.preco);
             consulta.setString(2, this.nome);
             consulta.setString(3, String.valueOf(this.sexo));
+            consulta.setString(4, this.categoria);
+            consulta.setString(5, this.marca);
             consulta.execute();
             resultado = true;
 
@@ -235,7 +279,7 @@ public class ProdutoDAO {
         Connection conexao = this.banco.getConexao();
         boolean resultado;
 
-        String sql = "INSERT INTO produto(preco, nome) VALUES (?, ?);";
+        String sql = "INSERT INTO produto(preco, nome, categoria) VALUES (?, ?, ?, ?);";
         PreparedStatement consulta;
 
         try {
@@ -243,6 +287,8 @@ public class ProdutoDAO {
             consulta = conexao.prepareStatement(sql);
             consulta.setDouble(1, this.preco);
             consulta.setString(2, this.nome);
+            consulta.setString(3, this.categoria);
+            consulta.setString(4, this.marca);
 
             consulta.execute();
             resultado = true;
