@@ -48,7 +48,7 @@ public class main {
         
         String busca = idioma + "_" + pais;
         boolean temTraducao = false;
-        File diretorio = new File("com.miguelfernando.notasloja.languages");
+        File diretorio = new File("idiomas");
         File[] listagemDiretorio = diretorio.listFiles();
         if (listagemDiretorio != null) { //lista de arquivos encontrados
             for (File arquivo : listagemDiretorio) {
@@ -63,6 +63,8 @@ public class main {
             pais = "BR";
         }
         
+        
+        
         Locale localCorrente;
         ResourceBundle traducoes = null;
         
@@ -70,10 +72,11 @@ public class main {
         //localCorrente = new Locale(idioma, pais);
         //traducoes = ResourceBundle.getBundle("MessagesBundle", localCorrente);
         //teremos MessagesBundle_idioma_pais.properties
-
+       
         //para o executavel .jar final
         InputStream newInputStream;
-        String nomeArquivo = "./com.miguelfernando.notasloja.languages/MessagesBundle_"+idioma+"_"+pais+".properties";
+        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma+"_"+pais+".properties";
+        System.out.println(nomeArquivo);
         try {
             newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
             traducoes = new PropertyResourceBundle(newInputStream);
