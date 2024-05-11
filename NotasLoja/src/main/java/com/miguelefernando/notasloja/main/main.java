@@ -75,11 +75,13 @@ public class main {
        
         //para o executavel .jar final
         InputStream newInputStream;
+  
         String nomeArquivo = "./idiomas/MessagesBundle_"+idioma+"_"+pais+".properties";
         System.out.println(nomeArquivo);
         try {
             newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
             traducoes = new PropertyResourceBundle(newInputStream);
+            System.out.println(traducoes);
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
