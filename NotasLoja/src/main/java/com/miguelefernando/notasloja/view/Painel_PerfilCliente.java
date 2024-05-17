@@ -9,6 +9,7 @@ import com.miguelefernando.DAO.ConsultaJoinPedidoEPedido_Produto;
 import com.miguelefernando.DAO.PedidoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
+import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -110,9 +111,9 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 430, 200));
 
         bt_relatorio.setText("Relatório");
-        bt_relatorio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_relatorioMouseClicked(evt);
+        bt_relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_relatorioActionPerformed(evt);
             }
         });
         add(bt_relatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 120, 40));
@@ -125,17 +126,8 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         });
         add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
-    /**
-    * JOptionPane versão indisponível
-    * @param evt java.awt.event.MouseEvent 
-    * @author Miguel
-    * @since 04/24
-    * @version 1.0
-    */
-    private void bt_relatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_relatorioMouseClicked
-        JOptionPane.showMessageDialog(null, "Indisponível nessa versão!");
-    }//GEN-LAST:event_bt_relatorioMouseClicked
-    /**
+
+   /**
     * Volta para o painel Cliente
     * @param evt java.awt.event.MouseEvent 
     * @author Miguel
@@ -175,6 +167,15 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_jt_tabelaKeyReleased
+    /**
+     * @param evt 
+     */
+    private void bt_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_relatorioActionPerformed
+        int id = Integer.parseInt((String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0));
+        consultaJoinsCategoriaEQuantidadePorClienteDAO a = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
+        a.listarJoin();
+        
+    }//GEN-LAST:event_bt_relatorioActionPerformed
     /**
     * Método para inserir os dados do cliente em suas respectivas labels
     * @param nome String 
