@@ -5,6 +5,8 @@
 package com.miguelefernando.notasloja.main;
 
 import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
+import com.miguelefernando.notasloja.view.GraficoPizzaCategoriasCliente;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +15,7 @@ import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
 public class main_testes {
     public static void main(String[] args) {
         consultaJoinsCategoriaEQuantidadePorClienteDAO a = new  consultaJoinsCategoriaEQuantidadePorClienteDAO(1);
-        a.listarJoin();
+        ArrayList data = a.listarJoin();
+        GraficoPizzaCategoriasCliente b = new GraficoPizzaCategoriasCliente(data);
     }
 }

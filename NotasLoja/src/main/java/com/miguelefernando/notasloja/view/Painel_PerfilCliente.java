@@ -35,10 +35,12 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
+    int id;//variavel para identificar o id do cliente ao passar os dados para o grafico de pizza
     public Painel_PerfilCliente(String nome, String id, String cpf) {
         initComponents();
         setLabels(nome, id, cpf);
         setTabela(id);
+        this.id = Integer.parseInt(id);
         
     }
 
@@ -171,9 +173,10 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
      * @param evt 
      */
     private void bt_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_relatorioActionPerformed
-        int id = Integer.parseInt((String) jt_tabela.getValueAt(jt_tabela.getSelectedRow(), 0));
+
         consultaJoinsCategoriaEQuantidadePorClienteDAO a = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
-        a.listarJoin();
+        ArrayList data = a.listarJoin();
+        GraficoPizzaCategoriasCliente b = new GraficoPizzaCategoriasCliente(data);
         
     }//GEN-LAST:event_bt_relatorioActionPerformed
     /**
