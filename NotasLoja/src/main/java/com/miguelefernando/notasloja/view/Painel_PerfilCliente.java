@@ -10,6 +10,7 @@ import com.miguelefernando.DAO.PedidoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
 import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
+import com.miguelefernando.DAO.consultaJoinsMarcaEQuantidadePorClienteDAO;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -174,9 +175,11 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
      */
     private void bt_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_relatorioActionPerformed
 
-        consultaJoinsCategoriaEQuantidadePorClienteDAO a = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
-        ArrayList data = a.listarJoin();
-        GraficoPizzaCategoriasCliente b = new GraficoPizzaCategoriasCliente(data);
+consultaJoinsMarcaEQuantidadePorClienteDAO a = new consultaJoinsMarcaEQuantidadePorClienteDAO(id);
+        ArrayList dataMarcas = a.listarJoin();
+        consultaJoinsCategoriaEQuantidadePorClienteDAO b = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
+        ArrayList dataCategorias = a.listarJoin();
+        GraficoPizzaCategoriasCliente c = new GraficoPizzaCategoriasCliente(dataMarcas, dataCategorias);
         
     }//GEN-LAST:event_bt_relatorioActionPerformed
     /**
