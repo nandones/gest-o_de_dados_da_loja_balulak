@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class main_testes {
     public static void main(String[] args) {
-        consultaJoinsCategoriaEQuantidadePorClienteDAO a = new  consultaJoinsCategoriaEQuantidadePorClienteDAO(1);
-        ArrayList data = a.listarJoin();
-        GraficoPizzaCategoriasCliente b = new GraficoPizzaCategoriasCliente(data);
+        //consultaJoinsCategoriaEQuantidadePorClienteDAO a = new  consultaJoinsCategoriaEQuantidadePorClienteDAO(1);
+        //ArrayList data = a.listarJoin();
+        //GraficoPizzaCategoriasCliente b = new GraficoPizzaCategoriasCliente(data);
     }
 }
