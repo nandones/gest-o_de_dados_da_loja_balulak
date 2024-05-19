@@ -6,6 +6,7 @@ package com.miguelefernando.notasloja.view;
 
 import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -20,15 +21,16 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class GraficoPizzaCategoriasCliente extends JFrame {
 
-    public GraficoPizzaCategoriasCliente(ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> lista) {
-        setTitle("histórico do cliente");
+    public GraficoPizzaCategoriasCliente(ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> lista, ResourceBundle traducoes) {
+        
+        setTitle(traducoes.getString("hist_cliente"));
         setSize(950,700);
         setLocationRelativeTo(this);
-        CriarGrafico(lista);
+        CriarGrafico(lista, traducoes);
         setVisible(true);
     }
     
-    public void CriarGrafico(ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> lista){
+    public void CriarGrafico(ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> lista, ResourceBundle traducoes){
         DefaultPieDataset pizza = new DefaultPieDataset();
         
         for (int i = 0; i < lista.size(); i++) {
@@ -39,7 +41,7 @@ public class GraficoPizzaCategoriasCliente extends JFrame {
         
 
         
-        JFreeChart grafico = ChartFactory.createPieChart("histórico do cliente", pizza, true, true, false);
+        JFreeChart grafico = ChartFactory.createPieChart(traducoes.getString("hist_cliente"), pizza, true, true, false);
         ChartPanel painel  = new ChartPanel(grafico);
         add(painel);
     }
