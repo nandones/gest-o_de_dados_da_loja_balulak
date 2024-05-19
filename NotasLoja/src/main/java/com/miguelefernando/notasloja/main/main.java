@@ -31,9 +31,7 @@ import java.util.logging.Logger;
 public class main {
 
     public static void main(String[] args) {
-        Janela mi = new Janela();
-        mi.setVisible(true);
-        mi.setLocationRelativeTo(null);
+        
 
         String idioma;
         String pais;
@@ -45,6 +43,8 @@ public class main {
             idioma = args[0]; //idioma enviado por cli
             pais = args[1]; //pais enviado por cli
         }
+        
+        
         
         String busca = idioma + "_" + pais;
         boolean temTraducao = false;
@@ -63,30 +63,9 @@ public class main {
             pais = "BR";
         }
         
-        
-        
-        Locale localCorrente;
-        ResourceBundle traducoes = null;
-        
-        //para desenvolvimento local
-        //localCorrente = new Locale(idioma, pais);
-        //traducoes = ResourceBundle.getBundle("MessagesBundle", localCorrente);
-        //teremos MessagesBundle_idioma_pais.properties
-       
-        //para o executavel .jar final
-        InputStream newInputStream;
-  
-        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma+"_"+pais+".properties";
-        System.out.println(nomeArquivo);
-        try {
-            newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
-            traducoes = new PropertyResourceBundle(newInputStream);
-            System.out.println(traducoes);
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(traducoes.getString("cad_cliente_nome"));
 
-
+        Janela mi = new Janela(idioma, pais);
+        mi.setVisible(true);
+        mi.setLocationRelativeTo(null);
     }
 }

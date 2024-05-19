@@ -6,7 +6,18 @@
 package com.miguelefernando.notasloja.view;
 
 import com.miguelefernando.DAO.PessoaDAO;
+import static com.miguelefernando.notasloja.view.Janela.idioma1;
+import static com.miguelefernando.notasloja.view.Janela.pais1;
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Principal;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -44,6 +55,27 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         
         pessoa.update();
         
+        ResourceBundle traducoes = null;
+        InputStream newInputStream;
+  
+        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma1+"_"+pais1+".properties";
+        System.out.println(nomeArquivo);
+        try {
+            newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
+            traducoes = new PropertyResourceBundle(newInputStream);
+            System.out.println(traducoes);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        lb_nome.setText(traducoes.getString("lb_novo_nome"));
+        lb_cidade.setText(traducoes.getString("lb_nova_cidade"));
+        lb_uf.setText(traducoes.getString("lb_novo_uf"));
+        lb_cpf.setText(traducoes.getString("lb_novo_cpf"));
+        bt_voltar.setText(traducoes.getString("bt_voltar"));
+        bt_recadastrar.setText(traducoes.getString("bt_recadastrar"));
+        
         
     }
 
@@ -57,10 +89,10 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lb_nome = new javax.swing.JLabel();
+        lb_cpf = new javax.swing.JLabel();
+        lb_cidade = new javax.swing.JLabel();
+        lb_uf = new javax.swing.JLabel();
         tf_nome = new javax.swing.JTextField();
         tf_cpf = new javax.swing.JTextField();
         tf_cidade = new javax.swing.JTextField();
@@ -76,21 +108,21 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
         jLabel1.setText("BALULAK");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Novo Nome:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        lb_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_nome.setText("Novo Nome:");
+        add(lb_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Novo CPF:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        lb_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_cpf.setText("Novo CPF:");
+        add(lb_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Nova Cidade:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        lb_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_cidade.setText("Nova Cidade:");
+        add(lb_cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Novo UF:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        lb_uf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_uf.setText("Novo UF:");
+        add(lb_uf, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         tf_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(tf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 370, -1));
@@ -299,10 +331,10 @@ public class Painel_atualizar_cadastro extends javax.swing.JPanel {
     private javax.swing.JButton bt_voltar;
     private javax.swing.JComboBox<String> cb_uf;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lb_cidade;
+    private javax.swing.JLabel lb_cpf;
+    private javax.swing.JLabel lb_nome;
+    private javax.swing.JLabel lb_uf;
     private javax.swing.JTextField tf_cidade;
     private javax.swing.JTextField tf_cpf;
     private javax.swing.JTextField tf_nome;

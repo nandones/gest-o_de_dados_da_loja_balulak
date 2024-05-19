@@ -10,9 +10,20 @@ import com.miguelefernando.DAO.PedidoDAO;
 import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.DAO.ProdutoDAO;
 import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
+import static com.miguelefernando.notasloja.view.Janela.idioma1;
+import static com.miguelefernando.notasloja.view.Janela.pais1;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -29,6 +40,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Painel_PerfilCliente extends javax.swing.JPanel {
 
+    public ResourceBundle traducoes1;
     /**
     * Creates new form Painel_PerfilCliente
     * @author Miguel
@@ -42,6 +54,24 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         setTabela(id);
         this.id = Integer.parseInt(id);
         
+        
+        ResourceBundle traducoes = null;
+        InputStream newInputStream;
+  
+        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma1+"_"+pais1+".properties";
+        System.out.println(nomeArquivo);
+        try {
+            newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
+            traducoes = new PropertyResourceBundle(newInputStream);
+            System.out.println(traducoes);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        bt_voltar.setText(traducoes.getString("bt_voltar"));
+        bt_relatorio.setText(traducoes.getString("bt_relatorio"));
+        lingua_tabela(traducoes);
+        traducoes1 = traducoes;
     }
 
     /**
@@ -160,11 +190,11 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
             ArrayList<ConsultaJoinPedidoEPedido_Produto> lista = c.listarJoin();
             String notaFiscal = "";
             for (int i = 0; i < lista.size(); i++) {
-                notaFiscal += (lista.get(i).getNome() + " ----- qtd: " + lista.get(i).getQuantidade() + " ------- preço unitario: " + lista.get(i).getPreco() + " ------- preço somado: " + lista.get(i).getPreco() * lista.get(i).getQuantidade()+"\n");
+                notaFiscal += (lista.get(i).getNome() + " ----- qtd: " + lista.get(i).getQuantidade() + " ------- "+ traducoes1.getString("preco_unitario")+": " + lista.get(i).getPreco() + " ------- "+traducoes1.getString("preco_total")+": " + lista.get(i).getPreco() * lista.get(i).getQuantidade()+"\n");
                 
 
             }
-        JOptionPane.showMessageDialog(null, notaFiscal, "id pedido : "+id, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, notaFiscal, traducoes1.getString("id_pedido")+": "+id, JOptionPane.PLAIN_MESSAGE);
                 
             
         }
@@ -229,6 +259,14 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         }
     }
         jt_tabela.changeSelection(0, 0, false, false);
+}
+    
+    public void lingua_tabela(ResourceBundle traducoes){
+        
+        String [] novonome = {traducoes.getString("id_cliente"), traducoes.getString("valor_total"), traducoes.getString("emissao"), traducoes.getString("fechamento"), traducoes.getString("status")}; 
+        DefaultTableModel modelo = (DefaultTableModel) this.jt_tabela.getModel();
+        modelo.setColumnIdentifiers(novonome);
+        jt_tabela.setModel(modelo);
 }
     
     
