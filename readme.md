@@ -38,3 +38,4 @@ O software fora planejado para extrair dados do excel e repassa-lo para o MySQL,
 ---
 ## Futuras Atualizações
 - Método para fazer unmashling dos dados a partir do Excel não normalizado onde os registros da loja balulak ficam salvos, normaliza-los e sincronizar automaticamente o mysql .
+- emissão de relatórios mais robustos, dispondo tanto de categorias quanto marcas no mesmo jframe
