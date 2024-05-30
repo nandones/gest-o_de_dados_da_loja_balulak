@@ -1,7 +1,7 @@
 # Gestão da loja Balulak
 
 ## Projeto
-Um software para gestão da loja Balulak
+Um software para gestão da loja Balulak dentro da disciplina laboratório de programação
 
 ---
 ## Detalhes
