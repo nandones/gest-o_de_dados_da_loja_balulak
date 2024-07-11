@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -238,7 +239,7 @@ public class PessoaDAO {
      * @since 03/24
      * @version 1.0
      */
-    public boolean excluir() {
+    public boolean excluir(ResourceBundle traducoes) {
         Connection conexao = this.banco.getConexao();
 
         String sql = "DELETE FROM pessoa WHERE id = ?";
@@ -254,6 +255,7 @@ public class PessoaDAO {
             }
         } catch (SQLException ex) {
             excluido = false;
+            
             JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL EXCLUIR UM CLIENTE COM PEDIDOS", "ERRO", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, "nao fora excluido nenhum registro", ex);
         }

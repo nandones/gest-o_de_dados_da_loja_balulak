@@ -12,7 +12,7 @@ import com.miguelefernando.DAO.PessoaDAO;
 import com.miguelefernando.notasloja.utils.Mock;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
 
 /**
  * Painel que serve como menu, é usado para acessar<br>
@@ -23,7 +23,22 @@ import javax.swing.JOptionPane;
  * @version 1.0
  * 
  */
+import static com.miguelefernando.notasloja.view.Janela.idioma1;
+import static com.miguelefernando.notasloja.view.Janela.pais1;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Principal;
+import java.util.Locale;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 public class Painel_clientes extends javax.swing.JPanel {
+    public String message;
+    public ResourceBundle traducoes1; 
 
     /**
      * Creates new form Painel_clientes
@@ -34,7 +49,40 @@ public class Painel_clientes extends javax.swing.JPanel {
     public Painel_clientes() {
         initComponents();
         abrirTabela();
-        bt_voltar.setVisible(false);
+        
+        bt_voltarClientes.setVisible(false);
+      
+        ResourceBundle traducoes = null;
+        InputStream newInputStream;
+  
+        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma1+"_"+pais1+".properties";
+        System.out.println(nomeArquivo);
+        try {
+            newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
+            traducoes = new PropertyResourceBundle(newInputStream);
+            System.out.println(traducoes);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        traducoes1 = traducoes;
+        
+
+        message = traducoes.getString("message");
+ 
+        
+        
+
+        
+        
+        bt_vizualizarCliente.setText(traducoes.getString("bt_vizualizar"));
+        bt_procurarCliente.setText(traducoes.getString("bt_procurar"));
+        bt_voltarClientes.setText(traducoes.getString("bt_voltar"));
+        bt_deletarClientes.setText(traducoes.getString("bt_deletar"));
+        bt_atualizarCadastro.setText(traducoes.getString("bt_atuzalizar"));
+        bt_cadastrarClientes.setText(traducoes.getString("bt_cadastro"));
+        
+        
+        lingua_tabela(traducoes);
 
     }
 
@@ -47,14 +95,14 @@ public class Painel_clientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbutton_visualizarCliente = new javax.swing.JButton();
-        jbutton_procurarCliente = new javax.swing.JButton();
-        jbutton_CadastrarCliente = new javax.swing.JButton();
-        jbutton_deletar_cliente1 = new javax.swing.JButton();
+        bt_vizualizarCliente = new javax.swing.JButton();
+        bt_procurarCliente = new javax.swing.JButton();
+        bt_cadastrarClientes = new javax.swing.JButton();
+        bt_deletarClientes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable_tabela = new javax.swing.JTable();
-        bt_voltar = new javax.swing.JButton();
+        bt_voltarClientes = new javax.swing.JButton();
         bt_atualizarCadastro = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
 
@@ -62,37 +110,37 @@ public class Painel_clientes extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(700, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbutton_visualizarCliente.setText("Visualizar Cliente");
-        jbutton_visualizarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_vizualizarCliente.setText("Visualizar Cliente");
+        bt_vizualizarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_visualizarClienteMouseClicked(evt);
+                bt_vizualizarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_visualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 190, 51));
+        add(bt_vizualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 190, 51));
 
-        jbutton_procurarCliente.setText("Procurar cliente");
-        jbutton_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_procurarCliente.setText("Procurar cliente");
+        bt_procurarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_procurarClienteMouseClicked(evt);
+                bt_procurarClienteMouseClicked(evt);
             }
         });
-        add(jbutton_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 190, 51));
+        add(bt_procurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 190, 51));
 
-        jbutton_CadastrarCliente.setText("Cadastrar Cliente");
-        jbutton_CadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_cadastrarClientes.setText("Cadastrar Cliente");
+        bt_cadastrarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_CadastrarClienteMouseClicked(evt);
+                bt_cadastrarClientesMouseClicked(evt);
             }
         });
-        add(jbutton_CadastrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 190, 51));
+        add(bt_cadastrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 190, 51));
 
-        jbutton_deletar_cliente1.setText("Deletar Cliente");
-        jbutton_deletar_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_deletarClientes.setText("Deletar Cliente");
+        bt_deletarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_deletar_cliente1MouseClicked(evt);
+                bt_deletarClientesMouseClicked(evt);
             }
         });
-        add(jbutton_deletar_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 190, 51));
+        add(bt_deletarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 190, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setText("BALULAK");
@@ -125,13 +173,13 @@ public class Painel_clientes extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 400, 410));
 
-        bt_voltar.setText("Voltar");
-        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+        bt_voltarClientes.setText("Voltar");
+        bt_voltarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_voltarActionPerformed(evt);
+                bt_voltarClientesActionPerformed(evt);
             }
         });
-        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 190, 50));
+        add(bt_voltarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 190, 50));
 
         bt_atualizarCadastro.setText("Atualizar Cadastro");
         bt_atualizarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,7 +204,7 @@ public class Painel_clientes extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_visualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_visualizarClienteMouseClicked
+    private void bt_vizualizarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_vizualizarClienteMouseClicked
         
         String nome = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 1);
         String id = (String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0);
@@ -166,7 +214,7 @@ public class Painel_clientes extends javax.swing.JPanel {
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p2, BorderLayout.CENTER);
         maininterface.pack();
-    }//GEN-LAST:event_jbutton_visualizarClienteMouseClicked
+    }//GEN-LAST:event_bt_vizualizarClienteMouseClicked
     /**
     * Mostra um JOptionPane que filtra os nomes do <br>
     * cliente, no jtable, para mostrar apenas o nome <br>
@@ -176,9 +224,10 @@ public class Painel_clientes extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_procurarClienteMouseClicked
+    private void bt_procurarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_procurarClienteMouseClicked
 
-        String textoDigitado = JOptionPane.showInputDialog(null, " digite o nome do cliente!");
+        
+        String textoDigitado = JOptionPane.showInputDialog(null, message);
         textoDigitado = textoDigitado.toUpperCase();
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
@@ -200,10 +249,10 @@ public class Painel_clientes extends javax.swing.JPanel {
             }
         }
         jtable_tabela.changeSelection(0, 0, false, false);
-        bt_voltar.setVisible(true);
+        bt_voltarClientes.setVisible(true);
 
 
-    }//GEN-LAST:event_jbutton_procurarClienteMouseClicked
+    }//GEN-LAST:event_bt_procurarClienteMouseClicked
     /**
     * Abre o painel Cadastro
     * 
@@ -213,13 +262,13 @@ public class Painel_clientes extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_CadastrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_CadastrarClienteMouseClicked
+    private void bt_cadastrarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cadastrarClientesMouseClicked
         Janela.p4 = new Painel_cadastro();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p4, BorderLayout.CENTER);
         maininterface.pack();
-    }//GEN-LAST:event_jbutton_CadastrarClienteMouseClicked
+    }//GEN-LAST:event_bt_cadastrarClientesMouseClicked
     /**
     * Abre o Painel atualizarCadastro passsando o id do cliente
     * @param evt java.awt.event.MouseEvent 
@@ -256,10 +305,10 @@ public class Painel_clientes extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        bt_voltar.setVisible(false);
+    private void bt_voltarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarClientesActionPerformed
+        bt_voltarClientes.setVisible(false);
         abrirTabela();
-    }//GEN-LAST:event_bt_voltarActionPerformed
+    }//GEN-LAST:event_bt_voltarClientesActionPerformed
 
     /**
     * deleta o cliente selecionado da tabela e do banco de dados
@@ -268,18 +317,17 @@ public class Painel_clientes extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_deletar_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_deletar_cliente1MouseClicked
+    private void bt_deletarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_deletarClientesMouseClicked
         PessoaDAO pessoa = new PessoaDAO();
         ArrayList<PessoaDAO> listaPessoa;
         listaPessoa = (ArrayList<PessoaDAO>) pessoa.listarPessoasDAO();
         DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
         int selectedRow = jtable_tabela.getSelectedRow();
         int id = Integer.parseInt((String) jtable_tabela.getValueAt(jtable_tabela.getSelectedRow(), 0));
-        System.out.println("id do excluido : "+ id);
         PessoaDAO pessoaExcluida = pessoa.getPessoa(id);
-        pessoaExcluida.excluir();
+        pessoaExcluida.excluir(traducoes1);
         abrirTabela();
-    }//GEN-LAST:event_jbutton_deletar_cliente1MouseClicked
+    }//GEN-LAST:event_bt_deletarClientesMouseClicked
 
     /**
     * Coloca os dados do Banco de dados n jtable
@@ -308,18 +356,26 @@ public class Painel_clientes extends javax.swing.JPanel {
         jtable_tabela.changeSelection(0, 0, false, false);
     }
     
+    public void lingua_tabela(ResourceBundle traducoes){
+        String [] novonome = {traducoes.getString("id_cliente"), traducoes.getString("nome_cliente"), traducoes.getString("cpf_cliente")}; 
+        DefaultTableModel modelo = (DefaultTableModel) this.jtable_tabela.getModel();
+        modelo.setColumnIdentifiers(novonome);
+        jtable_tabela.setModel(modelo);
+   
+        
+}
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_atualizarCadastro;
-    private javax.swing.JButton bt_voltar;
+    private javax.swing.JButton bt_cadastrarClientes;
+    private javax.swing.JButton bt_deletarClientes;
+    private javax.swing.JButton bt_procurarCliente;
+    private javax.swing.JButton bt_vizualizarCliente;
+    private javax.swing.JButton bt_voltarClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jbutton_CadastrarCliente;
-    private javax.swing.JButton jbutton_deletar_cliente1;
-    private javax.swing.JButton jbutton_procurarCliente;
-    private javax.swing.JButton jbutton_visualizarCliente;
     private javax.swing.JTable jtable_tabela;
     // End of variables declaration//GEN-END:variables
 }

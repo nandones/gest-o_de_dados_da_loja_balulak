@@ -3,6 +3,7 @@ package com.miguelefernando.notasloja.view;
 import com.miguelefernando.DAO.consultaJoinsCategoriaEQuantidadePorClienteDAO;
 import com.miguelefernando.DAO.consultaJoinsMarcaEQuantidadePorClienteDAO;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -40,6 +41,7 @@ public class GraficoPizzaCategoriasCliente extends JFrame {
     }
 
     public ChartPanel CriarGraficoMarcas(ArrayList<consultaJoinsMarcaEQuantidadePorClienteDAO> lista) {
+
         DefaultPieDataset pizza = new DefaultPieDataset();
 
         for (consultaJoinsMarcaEQuantidadePorClienteDAO item : lista) {
@@ -61,7 +63,9 @@ public class GraficoPizzaCategoriasCliente extends JFrame {
             pizza.setValue(categoria, quantidade);
         }
 
+
         JFreeChart grafico = ChartFactory.createPieChart("Histórico do Cliente com Categorias", pizza, true, true, false);
         return new ChartPanel(grafico);
+
     }
 }

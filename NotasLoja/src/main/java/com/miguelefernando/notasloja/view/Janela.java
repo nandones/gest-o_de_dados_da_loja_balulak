@@ -12,8 +12,10 @@ import java.awt.BorderLayout;
  * @since 04/24
  * @version 1.0
  */
-public class Janela extends javax.swing.JFrame {
 
+public class Janela extends javax.swing.JFrame {
+    static String idioma1;
+    static String pais1;
     
     
     static Painel_PerfilCliente p2;
@@ -21,13 +23,15 @@ public class Janela extends javax.swing.JFrame {
     static Painel_cadastro p4;
     static Painel_atualizar_cadastro p5;
     
+    
     /**
      * Creates new form Janela
      */
-    public Janela() {
+    public Janela(String idioma, String pais) {
         initComponents();
         this.setLayout(new BorderLayout());
-        
+        idioma1 = idioma;
+        pais1 = pais;
         p3 = new Painel_clientes();
         
         this.add(p3, BorderLayout.CENTER);
@@ -89,7 +93,7 @@ public class Janela extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Janela().setVisible(true);
+            
             }
         });
     }

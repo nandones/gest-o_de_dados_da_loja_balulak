@@ -10,7 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import com.miguelefernando.DAO.PessoaDAO;
+import static com.miguelefernando.notasloja.view.Janela.idioma1;
+import static com.miguelefernando.notasloja.view.Janela.pais1;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Principal;
 import java.sql.SQLException;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,12 +32,34 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class Painel_cadastro extends javax.swing.JPanel {
+    public ResourceBundle traducoes1;
 
     /**
      * Creates new form Painel_cadastro
      */
     public Painel_cadastro() {
         initComponents();
+        ResourceBundle traducoes = null;
+        InputStream newInputStream;
+  
+        String nomeArquivo = "./idiomas/MessagesBundle_"+idioma1+"_"+pais1+".properties";
+        System.out.println(nomeArquivo);
+        try {
+            newInputStream = Files.newInputStream(Paths.get(nomeArquivo));
+            traducoes = new PropertyResourceBundle(newInputStream);
+            System.out.println(traducoes);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        lb_nome.setText(traducoes.getString("lb_nome"));
+        lb_cidade.setText(traducoes.getString("lb_cidade"));
+        lb_uf.setText(traducoes.getString("lb_uf"));
+        lb_cpf.setText(traducoes.getString("lb_cpf"));
+        bt_voltar.setText(traducoes.getString("bt_voltar"));
+        bt_cadastrar.setText(traducoes.getString("bt_cadastrar"));
+        traducoes1 = traducoes;
+                
     }
 
     /**
@@ -41,16 +72,16 @@ public class Painel_cadastro extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lb_nome = new javax.swing.JLabel();
         jtext_nome = new javax.swing.JTextField();
         jtext_cpf = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lb_cpf = new javax.swing.JLabel();
         jtext_cidade = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lb_cidade = new javax.swing.JLabel();
         combobox_uf = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jbutton_cadastrar = new javax.swing.JButton();
-        jbutton_voltar = new javax.swing.JButton();
+        lb_uf = new javax.swing.JLabel();
+        bt_cadastrar = new javax.swing.JButton();
+        bt_voltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,9 +90,9 @@ public class Painel_cadastro extends javax.swing.JPanel {
         jLabel1.setText("BALULAK");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 11, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Nome:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        lb_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_nome.setText("Nome:");
+        add(lb_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jtext_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(jtext_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 420, -1));
@@ -74,44 +105,44 @@ public class Painel_cadastro extends javax.swing.JPanel {
         });
         add(jtext_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 420, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("CPF:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        lb_cpf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_cpf.setText("CPF:");
+        add(lb_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jtext_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(jtext_cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Cidade:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        lb_cidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_cidade.setText("Cidade:");
+        add(lb_cidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         combobox_uf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         combobox_uf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PR", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         add(combobox_uf, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 90, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("UF:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
+        lb_uf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lb_uf.setText("UF:");
+        add(lb_uf, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
 
-        jbutton_cadastrar.setBackground(new java.awt.Color(0, 255, 0));
-        jbutton_cadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jbutton_cadastrar.setText("Cadastrar");
-        jbutton_cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_cadastrar.setBackground(new java.awt.Color(0, 255, 0));
+        bt_cadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        bt_cadastrar.setText("Cadastrar");
+        bt_cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_cadastrarMouseClicked(evt);
+                bt_cadastrarMouseClicked(evt);
             }
         });
-        add(jbutton_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 130, 50));
+        add(bt_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 130, 50));
 
-        jbutton_voltar.setBackground(new java.awt.Color(255, 51, 51));
-        jbutton_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jbutton_voltar.setText("Voltar");
-        jbutton_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_voltar.setBackground(new java.awt.Color(255, 51, 51));
+        bt_voltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        bt_voltar.setText("Voltar");
+        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_voltarMouseClicked(evt);
+                bt_voltarMouseClicked(evt);
             }
         });
-        add(jbutton_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 130, 50));
+        add(bt_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 393, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
     /**
     * Método para inserir os dados do cliente em suas respectivas labels
@@ -120,17 +151,18 @@ public class Painel_cadastro extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_cadastrarMouseClicked
+    private void bt_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cadastrarMouseClicked
     String nome = jtext_nome.getText();
     String cpf = jtext_cpf.getText();
     String cidade = jtext_cidade.getText(); 
     nome = nome.toUpperCase();
     cidade = cidade.toUpperCase();
     String uf = (String) combobox_uf.getSelectedItem();
+    
     if (uf == null) {
-        JOptionPane.showMessageDialog(null, "selecione um uf!");
+        JOptionPane.showMessageDialog(null, "ERROR");
     } else if(verificarFormatoCPF(cpf)==false){
-        JOptionPane.showMessageDialog(null, "digite um cpf válido!");
+        JOptionPane.showMessageDialog(null, "ERROR");
         jtext_cpf.setText("");
             }else if(nome != null && cpf!=null && cidade !=null){
                 cpf = formatarCPF(cpf);
@@ -141,11 +173,11 @@ public class Painel_cadastro extends javax.swing.JPanel {
                 maininterface.getContentPane().remove(this);
                 maininterface.add(Janela.p3, BorderLayout.CENTER);
                 maininterface.pack();
-                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!"); 
+                JOptionPane.showMessageDialog(null, traducoes1.getString("message_sucesso")); 
             }else{
-                JOptionPane.showMessageDialog(null, "cliente não cadastrado!");
+                JOptionPane.showMessageDialog(null, "ERROR");
             }
-    }//GEN-LAST:event_jbutton_cadastrarMouseClicked
+    }//GEN-LAST:event_bt_cadastrarMouseClicked
     /**
     * Volta para o painel clientes
     * @param evt java.awt.event.MouseEvent
@@ -153,13 +185,13 @@ public class Painel_cadastro extends javax.swing.JPanel {
     * @since 04/24
     * @version 1.0
     */
-    private void jbutton_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_voltarMouseClicked
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
         Janela.p3 = new Painel_clientes();
         JFrame maininterface = (JFrame) SwingUtilities.getWindowAncestor(this);
         maininterface.getContentPane().remove(this);
         maininterface.add(Janela.p3, BorderLayout.CENTER);
         maininterface.pack();
-    }//GEN-LAST:event_jbutton_voltarMouseClicked
+    }//GEN-LAST:event_bt_voltarMouseClicked
     /**
     * chama o método formatacaoCPF.
     @param evt java.awt.event.MouseEvent
@@ -257,16 +289,16 @@ public class Painel_cadastro extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_cadastrar;
+    private javax.swing.JButton bt_voltar;
     private javax.swing.JComboBox<String> combobox_uf;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton jbutton_cadastrar;
-    private javax.swing.JButton jbutton_voltar;
     private javax.swing.JTextField jtext_cidade;
     private javax.swing.JTextField jtext_cpf;
     private javax.swing.JTextField jtext_nome;
+    private javax.swing.JLabel lb_cidade;
+    private javax.swing.JLabel lb_cpf;
+    private javax.swing.JLabel lb_nome;
+    private javax.swing.JLabel lb_uf;
     // End of variables declaration//GEN-END:variables
 }
