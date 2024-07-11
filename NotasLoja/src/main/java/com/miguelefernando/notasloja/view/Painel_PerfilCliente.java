@@ -175,11 +175,11 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
      */
     private void bt_relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_relatorioActionPerformed
 
-consultaJoinsMarcaEQuantidadePorClienteDAO a = new consultaJoinsMarcaEQuantidadePorClienteDAO(id);
+        consultaJoinsMarcaEQuantidadePorClienteDAO a = new consultaJoinsMarcaEQuantidadePorClienteDAO(id);
         ArrayList dataMarcas = a.listarJoin();
         consultaJoinsCategoriaEQuantidadePorClienteDAO b = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
-        ArrayList dataCategorias = a.listarJoin();
-        GraficoPizzaCategoriasCliente c = new GraficoPizzaCategoriasCliente(dataMarcas, dataCategorias);
+        ArrayList dataCategorias = b.listarJoin();
+        GraficoPizzaCategoriasCliente c = new GraficoPizzaCategoriasCliente(dataCategorias, dataMarcas );
         
     }//GEN-LAST:event_bt_relatorioActionPerformed
     /**

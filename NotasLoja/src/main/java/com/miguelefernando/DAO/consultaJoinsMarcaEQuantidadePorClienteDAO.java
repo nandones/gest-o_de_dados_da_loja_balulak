@@ -30,8 +30,8 @@ public class consultaJoinsMarcaEQuantidadePorClienteDAO {
         banco = new BancoDAO();
     }
 
-    public consultaJoinsMarcaEQuantidadePorClienteDAO(String categoria, int quantidade) {
-        this.marca = categoria;
+    public consultaJoinsMarcaEQuantidadePorClienteDAO(String marca, int quantidade) {
+        this.marca = marca;
         this.quantidade = quantidade;
         this.banco = new BancoDAO();//acho que não precisa dessa variavel aqui
     }
