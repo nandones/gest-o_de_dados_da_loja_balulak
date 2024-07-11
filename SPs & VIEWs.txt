@@ -1,0 +1,93 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `view_categoria_quantidade_por_cliente` AS
+    SELECT 
+        `pessoa`.`nome` AS `pessoa`,
+        `pessoa`.`id` AS `pessoa_id`,
+        `produto`.`categoria` AS `categoria`,
+        `pedido_produto`.`quantidade` AS `quantidade`
+    FROM
+        (((`pessoa`
+        JOIN `pedido` ON (`pessoa`.`id` = `pedido`.`id_cliente`))
+        JOIN `pedido_produto` ON (`pedido_produto`.`id_pedido` = `pedido`.`id`))
+        JOIN `produto` ON (`pedido_produto`.`id_produto` = `produto`.`id`))
+    ORDER BY `produto`.`marca`
+
+—---------------------------------------------------------------------------------
+
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `view_marca_quantidade_por_cliente` AS
+    SELECT 
+        `pessoa`.`nome` AS `pessoa`,
+        `pessoa`.`id` AS `pessoa_id`,
+        `produto`.`marca` AS `marca`,
+        `pedido_produto`.`quantidade` AS `quantidade`
+    FROM
+        (((`pessoa`
+        JOIN `pedido` ON (`pessoa`.`id` = `pedido`.`id_cliente`))
+        JOIN `pedido_produto` ON (`pedido_produto`.`id_pedido` = `pedido`.`id`))
+        JOIN `produto` ON (`pedido_produto`.`id_produto` = `produto`.`id`))
+    ORDER BY `produto`.`marca`
+
+—-------------------------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta_categoria_quantidade_por_cliente`(
+    IN p_pessoa_id INT
+)
+BEGIN
+    SELECT 
+        categoria, 
+        quantidade 
+    FROM 
+        view_categoria_quantidade_por_cliente 
+    WHERE 
+        pessoa_id = p_pessoa_id;
+END
+
+—-----------------------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta_marca_quantidade_por_cliente`(
+    IN p_pessoa_id INT
+)
+BEGIN
+    SELECT 
+        marca, 
+        quantidade 
+    FROM 
+        view_marca_quantidade_por_cliente 
+    WHERE 
+        pessoa_id = p_pessoa_id;
+END
+
+—----------------------------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERE_CLIENTE`(
+    IN p_nome VARCHAR(45),
+    IN p_cidade VARCHAR(45),
+    IN p_uf CHAR(45),
+    IN p_cpf VARCHAR(45)
+)
+BEGIN
+    INSERT INTO pessoa (nome, cidade, uf, cpf, admin) 
+    VALUES (p_nome, p_cidade, p_uf, p_cpf, 0);
+END
+
+—-------------------------------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERE_PRODUTO`(
+    IN p_preco DECIMAL(10,0),
+    IN p_nome VARCHAR(80),
+    IN p_sexo CHAR(1),
+    IN p_categoria VARCHAR(45),
+    IN p_marca VARCHAR(45)
+)
+BEGIN
+    INSERT INTO produto (preco, nome, sexo, categoria, marca) 
+    VALUES (p_preco, p_nome, p_sexo, p_categoria, p_marca) ;
+END
+
