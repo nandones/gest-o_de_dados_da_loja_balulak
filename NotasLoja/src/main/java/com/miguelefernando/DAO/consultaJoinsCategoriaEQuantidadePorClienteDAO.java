@@ -71,7 +71,7 @@ public class consultaJoinsCategoriaEQuantidadePorClienteDAO {
     public ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> listarJoin() {
         Connection conexao = this.banco.getConexao();
         ArrayList<consultaJoinsCategoriaEQuantidadePorClienteDAO> lista = new ArrayList<>();
-        String sql = "SELECT produto.categoria, pedido_produto.quantidade FROM pessoa JOIN pedido ON pessoa.id = pedido.id_cliente JOIN pedido_produto ON pedido_produto.id_pedido = pedido.id JOIN produto ON pedido_produto.id_produto = produto.id WHERE pessoa.id = ? ORDER BY produto.categoria";
+        String sql = "SELECT * FROM view_categoria_quantidade_por_cliente WHERE pessoa_id = ?;";
         PreparedStatement consulta;
         ResultSet resultados;
 

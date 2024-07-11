@@ -149,7 +149,8 @@ public class PessoaDAO {
         boolean resultado = false;
 
         String sql
-                = "INSERT INTO pessoa(nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, 0);";
+                //= "INSERT INTO pessoa(nome, cidade, uf, cpf, admin) VALUES (?, ?, ?, ?, 0);";
+                = "CALL INSERE_CLIENTE(?, ?, ?, ?);";
         PreparedStatement consulta;
 
         try {

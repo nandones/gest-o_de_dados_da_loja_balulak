@@ -209,7 +209,7 @@ public class Painel_PerfilCliente extends javax.swing.JPanel {
         ArrayList dataMarcas = a.listarJoin();
         consultaJoinsCategoriaEQuantidadePorClienteDAO b = new consultaJoinsCategoriaEQuantidadePorClienteDAO(id);
         ArrayList dataCategorias = b.listarJoin();
-        GraficoPizzaCategoriasCliente c = new GraficoPizzaCategoriasCliente(dataCategorias, dataMarcas, traducoes1 );
+        GraficoPizzaCategoriasCliente c = new GraficoPizzaCategoriasCliente(dataCategorias, dataMarcas/*, traducoes1*/ );
 
         
     }//GEN-LAST:event_bt_relatorioActionPerformed
