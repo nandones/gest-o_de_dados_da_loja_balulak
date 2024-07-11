@@ -25,15 +25,16 @@ O software fora planejado para extrair dados do excel e repassa-lo para o MySQL,
 2. Seguir as instruções de download que o site oficial indica .
 3. Baixar o software compactado .
 4. Caso não possua MySQL Workbench, baixe em https://dev.mysql.com/downloads/workbench/ .
-5. É importante baixar o model.bak do projeto e no workbench selecione Database > Synchronize Model > Next > Next > selecione o Model Schema e Next > Next > Next > por bug do workbench, __APAGUE TODOS OS VISIBLE__ do código gerado e Execute > Close .
-6. Descompactar e abrir a pasta NotasLoja no Netbeans .
-7. Ter o JDK 19 .
-8. Antes de mais nada, abra com.miguelefernando.DAO > BancoDAO.java e altere os dados no construtor para codizer com os do seu próprio Servidor MySQL .
-9. Clicar com o botão direito do mouse em cima do projeto ou F6 .
-10. Caso deseje selecionar uma entrada de idioma por argumentos, rightclick na aplicação NotasLoja> Properties> Run> Arguments; e digite uma das opções já mencionadas na aba funcionalidades.
-11. Selecionar "Run File" .
-12. Devido ao fato de ainda não ser possível trabalhar com dados previamente existentes, há um discreto radiobutton no canto inferior esquerdo da tela de inicial, você deve pressiona-lo para preencher o banco com um mock .
-13. pronto para uso .
+5. É importante baixar o model do projeto e então no workbench selecione Database > Synchronize Model > Next > Next > selecione o Model Schema e Next > Next > Next > por bug do workbench, __APAGUE TODOS OS VISIBLE__ do código gerado e Execute > Close .
+6. Abra o arquivo __SPs & VIEWs__ , e no Workbench, rode o construtor de cada View e cada Stored Procedure em seu respectivo "Create".
+7. Descompactar e abrir a pasta NotasLoja no Netbeans .
+8. Ter o JDK 19 .
+9. Antes de mais nada, abra com.miguelefernando.DAO > BancoDAO.java e altere os dados no construtor para codizer com os do seu próprio Servidor MySQL .
+10. Clicar com o botão direito do mouse em cima do projeto ou F6 .
+11. Caso deseje selecionar uma entrada de idioma por argumentos, rightclick na aplicação NotasLoja> Properties> Run> Arguments; e digite uma das opções já mencionadas na aba funcionalidades.
+12. Selecionar "Run File" .
+13. Devido ao fato de ainda não ser possível trabalhar com dados previamente existentes, há um discreto radiobutton no canto inferior esquerdo da tela de inicial, você deve pressiona-lo para preencher o banco com um mock .
+14. pronto para uso .
 
 ---
 ## Futuras Atualizações
