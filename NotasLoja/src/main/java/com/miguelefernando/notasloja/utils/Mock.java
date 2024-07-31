@@ -145,7 +145,7 @@ public class Mock {
 
         Date dataAtual = new Date(System.currentTimeMillis());
 
-        PedidoDAO p1 = new PedidoDAO(1, new Date(2021 - 1900, 20, 12), new Date(2023 - 1900, 0, 7), 'f', 117);// cada ano deve ser subtraido por 1900 para funcionar, e o mes começa em 0 (jan = 0)
+        PedidoDAO p1 = new PedidoDAO(1, new Date(2021 - 1900, 20, 12), new Date(2023 - 1900, 0, 7), 'f', 280);// cada ano deve ser subtraido por 1900 para funcionar, e o mes começa em 0 (jan = 0)
         PedidoDAO p2 = new PedidoDAO(4, dataAtual, new Date(2030 - 1900, 5, 1), 'a', 40);//cada vez que rodar o mock atualizara
 
         try {
