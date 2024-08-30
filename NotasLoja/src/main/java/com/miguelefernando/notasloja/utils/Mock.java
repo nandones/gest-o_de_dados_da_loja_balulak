@@ -162,7 +162,7 @@ public class Mock {
         Connection conexao = new BancoDAO().getConexao();
 
         Pedido_ProdutoDAO p1 = new Pedido_ProdutoDAO(1, 1, 2);
-        Pedido_ProdutoDAO p2 = new Pedido_ProdutoDAO(1, 2, 1);
+        Pedido_ProdutoDAO p2 = new Pedido_ProdutoDAO(1, 3, 1);
         Pedido_ProdutoDAO p3 = new Pedido_ProdutoDAO(2, 5, 1);
 
         try {
